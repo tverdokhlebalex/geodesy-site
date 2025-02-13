@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Контакты - Геодезические Услуги</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header x-data="{ openMobileMenu: false }" class="header-upgrade">
+  <div class="header-upgrade__wrapper">
+    <!-- Логотип слева -->
+    <p class="logo-p">LOGO</p>
+
+    <!-- Десктопное меню (по центру, за счёт margin: 0 auto;) -->
+    <nav class="header-upgrade__nav-desktop">
+      <ul class="menu-desktop">
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="services.html">Услуги</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <!-- Телефон и бургер справа -->
+    <div class="header-upgrade__right">
+      <a class="phone" href="tel:+79172103179" rel="nofollow">
+        <svg
+          width="24"
+          height="24"
+          fill="none"
+          stroke="#fff"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M22 16.92V20a2 2 0 0 1-2.18 2
+                 A19.86 19.86 0 0 1 2 4.18
+                 2 2 0 0 1 4 2h3.09
+                 a2 2 0 0 1 2 1.72 
+                 13.31 13.31 0 0 0 .7 2.88
+                 2 2 0 0 1-.45 2.11L8.09 9.91
+                 a16 16 0 0 0 6.37 6.37
+                 l1.2-1.2 a2 2 0 0 1 2.11-.45
+                 13.31 13.31 0 0 0 2.88.7
+                 2 2 0 0 1 1.72 2z"
+          />
+        </svg>
+      </a>
+
+      <!-- Бургер для мобильного меню -->
+      <div
+        class="icon-menu-mobile"
+        @click="openMobileMenu = !openMobileMenu"
+        :class="{ 'active': openMobileMenu }"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Мобильное меню (шторка) -->
+  <div class="main-menu" :class="{ 'opened': openMobileMenu }">
+    <button class="close-menu" @click="openMobileMenu = false">×</button>
+    <nav class="mobile-nav">
+      <ul>
+        <li>
+          <a href="index.html" @click="openMobileMenu = false">Главная</a>
+        </li>
+        <li>
+          <a href="services.html" @click="openMobileMenu = false">Услуги</a>
+        </li>
+        <li><a href="about.html" @click="openMobileMenu = false">О нас</a></li>
+        <li>
+          <a href="contacts.html" @click="openMobileMenu = false">Контакты</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Скрипт для активных ссылок и работы бургера -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const currentPage =
+        window.location.pathname.split("/").pop() || "index.html";
+      const currentHash = window.location.hash;
+
+      const mobileMenu = document.querySelector(".main-menu");
+      const burgerIcon = document.querySelector(".icon-menu-mobile");
+      const closeMenuBtn = document.querySelector(".close-menu");
+      const menuLinks = document.querySelectorAll(
+        ".menu-desktop a, .mobile-nav a"
+      );
+
+      // === Функция установки активного класса на ссылки ===
+      function setActiveLink() {
+        menuLinks.forEach((link) => {
+          const linkHref = link.getAttribute("href");
+
+          if (linkHref.includes("#")) {
+            if (currentPage === "index.html" && currentHash === linkHref) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          } else if (linkHref === currentPage) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      }
+
+      // === Открытие/закрытие мобильного меню ===
+      function toggleMobileMenu() {
+        mobileMenu.classList.toggle("opened");
+        burgerIcon.classList.toggle("active");
+
+        if (mobileMenu.classList.contains("opened")) {
+          document.body.style.overflow = "hidden"; // Блокируем прокрутку при открытом меню
+        } else {
+          document.body.style.overflow = "";
+        }
+      }
+
+      // === Закрытие меню при клике на ссылку ===
+      function closeMobileMenu() {
+        mobileMenu.classList.remove("opened");
+        burgerIcon.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+
+      // === Плавная прокрутка к якорям ===
+      menuLinks.forEach((link) => {
+        link.addEventListener("click", function (e) {
+          if (this.getAttribute("href").startsWith("#")) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href").substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 70,
+                behavior: "smooth",
+              });
+            }
+          }
+          closeMobileMenu();
+          setActiveLink();
+        });
+      });
+
+      // === Обработчики ===
+      burgerIcon.addEventListener("click", toggleMobileMenu);
+      closeMenuBtn.addEventListener("click", closeMobileMenu);
+      setActiveLink();
+    });
+  </script>
+</header>
+
+
+    <main>
+      <h1>Контакты</h1>
+      <p>Адрес, телефон, карта...</p>
+    </main>
+
+    <footer class="footer">
+  <div class="footer__container">
+    <!-- О компании -->
+    <div class="footer__column footer__about">
+      <a href="#" class="footer__logo">GeoPro64</a>
+      <p class="footer__description">
+        Мы занимаемся профессиональными геодезическими работами любой сложности.
+        Надёжность, опыт и современное оборудование для точных результатов.
+      </p>
+    </div>
+
+    <!-- Быстрые ссылки -->
+    <div class="footer__column footer__links">
+      <h4>Быстрые ссылки</h4>
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="services.html">Услуги</a></li>
+        <li><a href="about.html">О нас</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+    </div>
+
+    <!-- Контакты -->
+    <div class="footer__column footer__contacts">
+      <h4>Контакты</h4>
+      <p>Телефон: <a href="tel:+79172103179">+7 (917) 210-31-79</a></p>
+      <p>Email: <a href="mailto:info@geopro64.ru">info@geopro64.ru</a></p>
+      <p>Адрес: г. Саратов, ул. Чернышевского, 50в<br />2 этаж</p>
+    </div>
+  </div>
+
+  <!-- Нижняя полоса (права, кнопка "Наверх") -->
+  <div class="footer__bottom">
+    <p>© 2025 «ГеоПро64». Все права защищены.</p>
+    <a href="#top" class="back-to-top">Наверх ↑</a>
+  </div>
+</footer>
+
+  </body>
+</html>

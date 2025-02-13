@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Главная - Геодезические Услуги</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    @@include('partials/header.html')
+
+    <main>
+      <section id="services">
+        <h2>Наши услуги</h2>
+        <div class="service-grid">
+          <div class="service-card">
+            <h3>Геодезия</h3>
+            <p>Уточнение границ, геодезическая съемка, вынос точек.</p>
+          </div>
+          <div class="service-card">
+            <h3>Технические планы</h3>
+            <p>Постановка на учет, внесение изменений, регистрация.</p>
+          </div>
+          <div class="service-card">
+            <h3>Технические паспорта</h3>
+            <p>Оформление документов БТИ для всех видов объектов.</p>
+          </div>
+          <div class="service-card">
+            <h3>Технические заключения</h3>
+            <p>Экспертные оценки и подготовка заключений.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="why-choose-us">
+        <h2>Почему выбирают нас?</h2>
+        <ul>
+          <li>Опыт более 10 лет</li>
+          <li>Современное оборудование</li>
+          <li>Юридическое сопровождение</li>
+          <li>Гарантия точности</li>
+        </ul>
+      </section>
+
+      <section id="licenses">
+        <h2>Наши лицензии</h2>
+        <img src="assets/images/licenses.jpg" alt="Лицензии" />
+      </section>
+
+      <section id="contact-form">
+        <h2>Оставьте заявку</h2>
+        <form>
+          <input type="text" placeholder="Ваше имя" required />
+          <input type="tel" placeholder="Телефон" required />
+          <textarea placeholder="Ваш вопрос"></textarea>
+          <button type="submit">Отправить</button>
+        </form>
+      </section>
+    </main>
+
+    @@include('partials/footer.html')
+  </body>
+</html>
