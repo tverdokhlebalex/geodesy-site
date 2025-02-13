@@ -1,18 +1,17 @@
 {
   "name": "geodesy-site",
   "version": "1.0.0",
-  "type": "module",
-  "description": "",
-  "main": "index.js",
+  "description": "Геодезические услуги - сайт с Vite",
+  "private": true,
   "scripts": {
-    "build": "gulp build",
-    "dev": "gulp dev"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "browser-sync": "^3.0.3",
-    "gulp": "^4.0.2",
-    "gulp-file-include": "^2.3.0",
-    "del": "^6.1.1"
+    "aos": "^2.3.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
 }

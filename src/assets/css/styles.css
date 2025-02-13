@@ -17,15 +17,16 @@ body {
 }
 
 :root {
-  --main-blue: rgba(23, 77, 160, 0.9);
-  --main-orange: #ff6600;
+  --main-green: #2f4f4f; /* Основной тёмно-зелёный */
+  --accent-earth: #d2b48c; /* Земляной бежевый */
+  --highlight-blue: #00a5e0; /* Голубой для акцентов */
   --glass-bg: rgba(255, 255, 255, 0.1);
   --glass-border: rgba(255, 255, 255, 0.3);
 }
 
 /* ==============================
-         2) ХЕДЕР (СТЕКЛЯННЫЙ, ФИКСИРОВАННЫЙ)
-      ============================== */
+            2) ХЕДЕР (СТЕКЛЯННЫЙ, ФИКСИРОВАННЫЙ)
+         ============================== */
 .header-upgrade {
   position: fixed;
   top: 0;
@@ -187,8 +188,8 @@ body {
 }
 
 /* ==============================
-           АДАПТИВНОСТЬ
-        ============================== */
+              АДАПТИВНОСТЬ
+           ============================== */
 
 /* Планшеты (1024px и меньше) */
 @media (max-width: 1024px) {
@@ -214,100 +215,102 @@ body {
   }
 }
 
-:root {
-  --main-blue: rgba(23, 77, 160, 0.9);
-  --main-orange: #ff6600;
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.3);
+/* Герой-блок */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: url("assets/images/hero-bg.jpg") center/cover no-repeat,
+    linear-gradient(to bottom, rgba(0, 165, 224, 0.3), rgba(47, 79, 79, 0.9));
+  color: white;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
 }
 
-/* ===========================
-     ФУТЕР (СТЕКЛЯННЫЙ)
-   =========================== */
+.hero__content {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Услуги */
+.services {
+  text-align: center;
+  padding: 50px;
+}
+
+.services__grid {
+  display: flex;
+  gap: 20px;
+}
+
+.service-item {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Форма заявки */
+.contact-form {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 40px;
+  text-align: center;
+  border-radius: 15px;
+}
+
+/* ==========================
+   ФУТЕР (СТЕКЛЯННЫЙ) ========================== */
 .footer {
-  background: var(--glass-bg);
+  background: linear-gradient(to top, #2f4f4f, #d2b48c);
   backdrop-filter: blur(10px);
-  border-top: 1px solid var(--glass-border);
-  color: #ffffff;
-  padding: 50px 0 20px;
-  text-align: left; /* Можно выровнять содержимое по левому краю */
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
 }
 
-/* Контейнер футера */
+/* Основной контейнер */
 .footer__container {
   display: flex;
-  flex-wrap: wrap; /* Чтобы колонки переносились на новые строки при нехватке места */
   justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  gap: 30px; /* Добавим небольшие отступы между колонками */
+  flex-wrap: wrap;
+  gap: 40px;
 }
 
-/* Общий класс для каждой колонки */
-.footer__column {
-  flex: 1;
-  min-width: 250px; /* Минимальная ширина, чтобы каждая колонка не сжималась слишком сильно */
-  margin-bottom: 20px;
+.footer__about {
+  max-width: 300px;
 }
 
-/* Лого в футере */
 .footer__logo {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
-  color: #fff;
+  color: #ff6600;
   text-decoration: none;
-  transition: opacity 0.3s ease;
 }
 
-.footer__logo:hover {
-  opacity: 0.8;
-}
-
-/* Описание */
 .footer__description {
   margin-top: 10px;
   font-size: 14px;
   line-height: 1.5;
-  color: #e0e0e0;
+  color: #ccc;
 }
 
-/* Заголовки в колонках (например, "Контакты", "Быстрые ссылки") */
-.footer__column h4 {
+.footer__contacts h4 {
   font-size: 18px;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   color: #fff;
 }
 
-/* Быстрые ссылки */
-.footer__links ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer__links li {
-  margin-bottom: 8px;
-}
-
-.footer__links a {
-  color: var(--main-orange);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer__links a:hover {
-  color: #fff;
-}
-
-/* Контакты */
 .footer__contacts p {
-  margin-bottom: 8px;
-  color: #ddd;
-  line-height: 1.4;
+  margin-bottom: 10px;
+  color: #ccc;
 }
 
 .footer__contacts a {
-  color: var(--main-orange);
+  color: #ff6600;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -316,11 +319,10 @@ body {
   color: #fff;
 }
 
-/* Нижняя полоса (права, кнопка "Наверх") */
 .footer__bottom {
   text-align: center;
   padding-top: 20px;
-  border-top: 1px solid var(--glass-border);
+  border-top: 1px solid #444;
   font-size: 14px;
   color: #aaa;
 }
@@ -328,7 +330,7 @@ body {
 .back-to-top {
   display: inline-block;
   margin-top: 10px;
-  color: var(--main-orange);
+  color: #ff6600;
   font-weight: bold;
   text-decoration: none;
   transition: opacity 0.3s ease;
@@ -338,29 +340,69 @@ body {
   opacity: 0.7;
 }
 
-/* ==============================
-      Адаптивность
-   ============================== */
-/* Планшеты (до ~768-1024px) и меньше */
-@media (max-width: 1024px) {
+/* Адаптивность футера */
+@media (max-width: 768px) {
   .footer__container {
-    gap: 20px;
-    padding: 0 15px;
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .footer__about,
+  .footer__contacts {
+    max-width: 100%;
   }
 }
 
-/* Мобильные устройства (до 576px) */
-@media (max-width: 576px) {
-  /* Колонки идут одна под другой */
+.footer__info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer__info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.footer__info-item svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Ссылки */
+.footer__info-item a {
+  color: var(--main-orange);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer__info-item a:hover {
+  color: #fff;
+}
+
+/* Копирайт */
+.footer__copyright {
+  text-align: right;
+  font-size: 14px;
+  color: #aaa;
+}
+
+/* АДАПТИВНОСТЬ */
+@media (max-width: 768px) {
   .footer__container {
     flex-direction: column;
-    align-items: flex-start; /* Выравниваем по левому краю (можно и по центру) */
-    padding: 0 15px;
+    text-align: center;
+    gap: 15px;
   }
-  .footer__column {
-    margin-bottom: 30px; /* Увеличим отступ между блоками для удобства чтения */
+
+  .footer__info {
+    justify-content: center;
   }
-  .footer__bottom {
-    font-size: 13px;
+
+  .footer__copyright {
+    text-align: center;
   }
 }
