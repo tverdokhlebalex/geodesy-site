@@ -14,12 +14,9 @@
     <div id="header"></div>
 
     <!-- 🚀 HERO СЕКЦИЯ -->
-    <section class="hero" data-aos="fade-in">
+    <section id="hero" class="hero" data-aos="fade-in">
       <div class="hero__content">
-        <h1>
-          Геодезические услуги <br />
-          с точностью до миллиметра
-        </h1>
+        <h1>Геодезические услуги с точностью до миллиметра</h1>
         <p>
           Профессиональные измерения, технические планы и юридическая поддержка.
         </p>
@@ -28,12 +25,12 @@
     </section>
 
     <main>
-      <!-- 🔍 НАШИ УСЛУГИ -->
-      <section class="services" data-aos="fade-up">
+      <!-- НАШИ УСЛУГИ -->
+      <section id="services" class="services" data-aos="fade-up">
         <div class="container">
           <h2>Наши услуги</h2>
           <div class="services__grid">
-            <div class="service-item">
+            <div class="service-item" data-aos="zoom-in">
               <img
                 src="assets/images/geo-survey.svg"
                 alt="Геодезическая съемка"
@@ -43,12 +40,12 @@
                 Точные измерения местности для строительства и проектирования.
               </p>
             </div>
-            <div class="service-item">
+            <div class="service-item" data-aos="zoom-in" data-aos-delay="100">
               <img src="assets/images/tech-plan.svg" alt="Технические планы" />
               <h3>Технические планы</h3>
               <p>Создание планов для регистрации и согласования объектов.</p>
             </div>
-            <div class="service-item">
+            <div class="service-item" data-aos="zoom-in" data-aos-delay="200">
               <img
                 src="assets/images/tech-pass.svg"
                 alt="Технические паспорта"
@@ -60,27 +57,27 @@
         </div>
       </section>
 
-      <!-- ✅ ПОЧЕМУ ВЫБИРАЮТ НАС? -->
-      <section class="why-us" data-aos="fade-up">
+      <!-- ПОЧЕМУ ВЫБИРАЮТ НАС? -->
+      <section id="why-us" class="why-us" data-aos="fade-up">
         <div class="container">
           <h2>Почему выбирают нас?</h2>
           <div class="why-us__grid">
-            <div class="why-item">
+            <div class="why-item" data-aos="fade-up">
               <img src="assets/icons/experience.svg" alt="Опыт" />
               <p>Опыт более 10 лет</p>
             </div>
-            <div class="why-item">
+            <div class="why-item" data-aos="fade-up" data-aos-delay="100">
               <img src="assets/icons/equipment.svg" alt="Оборудование" />
               <p>Современное оборудование</p>
             </div>
-            <div class="why-item">
+            <div class="why-item" data-aos="fade-up" data-aos-delay="200">
               <img
                 src="assets/icons/legal.svg"
                 alt="Юридическое сопровождение"
               />
               <p>Юридическое сопровождение</p>
             </div>
-            <div class="why-item">
+            <div class="why-item" data-aos="fade-up" data-aos-delay="300">
               <img src="assets/icons/accuracy.svg" alt="Точность" />
               <p>Гарантия точности</p>
             </div>
@@ -88,33 +85,47 @@
         </div>
       </section>
 
-      <!-- 🎖 НАШИ ЛИЦЕНЗИИ -->
-      <section class="licenses" data-aos="zoom-in">
+      <!-- НАШИ ЛИЦЕНЗИИ -->
+      <section id="licenses" class="licenses" data-aos="fade-up">
         <div class="container">
           <h2>Наши лицензии</h2>
           <div class="licenses__gallery">
-            <img src="assets/images/license1.jpg" alt="Лицензия 1" />
-            <img src="assets/images/license2.jpg" alt="Лицензия 2" />
+            <img
+              src="assets/images/license1.jpg"
+              alt="Лицензия 1"
+              data-aos="zoom-in"
+            />
+            <img
+              src="assets/images/license2.jpg"
+              alt="Лицензия 2"
+              data-aos="zoom-in"
+              data-aos-delay="100"
+            />
           </div>
         </div>
       </section>
 
-      <!-- 📞 ФОРМА ЗАЯВКИ -->
-      <section class="contact-form" id="contact-form" data-aos="fade-up">
+      <!-- ФОРМА ЗАЯВКИ -->
+      <section id="contact-form" class="contact-form" data-aos="fade-up">
         <div class="container">
           <h2>Оставьте заявку</h2>
           <form>
             <input type="text" placeholder="Ваше имя" required />
             <input type="tel" placeholder="Телефон" required />
             <textarea placeholder="Ваш вопрос"></textarea>
-            <button type="submit" class="btn">Отправить</button>
+            <button type="submit">Отправить</button>
           </form>
         </div>
       </section>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
+      integrity="sha512-28rVCSfnGkY5QqyCq5S4v9oNmrZq0/7c7M36+Tn2l6JEt3y6zNBzdyzEOXJl9DSBe0Cvo1HSZkNVFfEWqUGTBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
 
     <div id="footer"></div>
-    <script type="module" src="/src/js/main.js"></script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>
