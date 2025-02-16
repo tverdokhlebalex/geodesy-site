@@ -220,9 +220,7 @@ img {
   }
 }
 
-/* ============================
-      3) HERO-СЕКЦИЯ
-      ============================ */
+/* =============== HERO-СЕКЦИЯ (Обновлённая) =============== */
 .hero {
   min-height: 80vh;
   display: flex;
@@ -241,25 +239,171 @@ img {
     ),
     url("../images/hero-img.jpg") center/cover no-repeat;
 }
+
 .hero__content {
   max-width: 600px;
-  padding: 30px;
+  padding: 40px 30px;
   background: rgba(255, 255, 255, 0.07);
   backdrop-filter: blur(6px);
   border-radius: 8px;
   transition: transform 0.3s;
 }
+
 .hero__content h1 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin-bottom: 15px;
   line-height: 1.3;
 }
+
 .hero__content p {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #ccc;
+  font-size: 1rem;
+  line-height: 1.4;
 }
+
 .hero__content:hover {
   transform: scale(1.01);
+}
+
+/* Кнопка "Оставить заявку" */
+.btn-open-modal {
+  /* Можно переопределить стили вашей .btn, если хотите иной вид */
+  background: var(--accent-color);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s, transform 0.3s;
+}
+.btn-open-modal:hover {
+  background: #00d3c4;
+  transform: translateY(-2px);
+}
+
+/* =============== МОДАЛЬНОЕ ОКНО =============== */
+/* Затенённая подложка */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* полупрозрачная тень */
+  display: none; /* скрыта по умолчанию */
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+}
+/* Само окно */
+.modal-content {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+  color: #eee;
+  /* Анимация появления (можно изменить) */
+  animation: modalFadeIn 0.4s ease;
+}
+@keyframes modalFadeIn {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* Кнопка закрытия (крестик) */
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.modal-close:hover {
+  color: #fff;
+}
+/* Форма внутри модалки */
+.modal-form {
+  display: grid;
+  gap: 15px;
+  margin: 20px 0;
+}
+.modal-form input {
+  background: #242424;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #eee;
+  padding: 10px;
+  font-size: 14px;
+}
+.modal-form button {
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.modal-form button:hover {
+  background: #00d3c4;
+}
+/* Блок с быстрыми ссылками в мессенджеры */
+.modal-quick-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+.modal-quick-links p {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #ccc;
+}
+.modal-quick-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-color);
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 14px;
+}
+.modal-quick-links a:hover {
+  color: #00d3c4;
+}
+.modal-quick-links img {
+  width: 20px;
+  height: 20px;
+}
+
+/* =============== ОТОБРАЖЕНИЕ (ПОКАЗ) МОДАЛКИ =============== */
+.modal-overlay.active {
+  display: flex; /* делаем видимым (flex-центрирование) */
+}
+
+/* =============== АДАПТИВНОСТЬ =============== */
+@media (max-width: 768px) {
+  .hero__content h1 {
+    font-size: 1.8rem;
+  }
+  .hero__content p {
+    font-size: 0.95rem;
+  }
 }
 
 /* Кнопка .btn */
@@ -274,7 +418,6 @@ img {
   transition: background 0.3s ease, transform 0.3s ease;
 }
 .btn:hover {
-  background: #00d3c4;
   transform: translateY(-2px);
 }
 
