@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   root: "src",
-  base: "/", // Используй "/", чтобы не было проблем с путями
+  base: "/", // Указываем base, чтобы GitHub Pages корректно работал
   server: {
     port: 5173,
     open: true, // Автоматически открывает браузер
