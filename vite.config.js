@@ -10,4 +10,25 @@ export default defineConfig({
     emptyOutDir: true, // Очищаем перед билдом
     rollupOptions: {
       input: {
-        main: resolve(__dirname, "src/index.html"), // Указываем путь 
+        main: resolve(__dirname, "src/index.html"), // Указываем путь к index.html
+      },
+    },
+  },
+  plugins: [
+    copy({
+      targets: [
+        { src: "src/components/*", dest: "dist/components" }, // Копируем header и footer в dist
+      ],
+      hook: "writeBundle",
+    }),
+  ],
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "src"), // Упрощаем импорт файлов через @/
+    },
+  },
+  server: {
+    port: 5173,
+    open: true, // Автоматически открываем браузер при запуске dev-сервера
+  },
+});
