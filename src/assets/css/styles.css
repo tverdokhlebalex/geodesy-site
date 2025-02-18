@@ -589,9 +589,9 @@ img {
   }
 }
 
-/* ============================
-    6) БЛОК "НАШИ ЛИЦЕНЗИИ"
-   ============================ */
+/* =======================
+   БЛОК "НАШИ ЛИЦЕНЗИИ"
+======================= */
 .licenses {
   padding: 60px 20px;
   text-align: center;
@@ -603,68 +603,134 @@ img {
   font-size: 28px;
 }
 
-/* Слайдер */
+/* ✅ Swiper СЛАЙДЕР */
 .licenses__slider {
-  position: relative;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
+  position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
 }
 
-/* Галерея (слайды в ряд) */
-.licenses__gallery {
-  display: flex;
-  gap: 20px;
-  transition: transform 0.5s ease-in-out;
-  will-change: transform;
-}
-
-.slide {
-  min-width: 300px;
+/* ✅ Слайды */
+.swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* ✅ Центрирование изображений в слайдере */
 .license-img {
-  width: 300px;
+  width: 280px;
   height: auto;
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  display: block;
+  margin: 0 auto;
 }
 
 .license-img:hover {
   transform: scale(1.05);
 }
 
-/* Стрелки */
-.slider-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
+/* ✅ Кастомные стрелки Swiper */
+.swiper-button-next,
+.swiper-button-prev {
   color: #fff;
-  border: none;
-  font-size: 24px;
-  padding: 10px;
-  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: background 0.3s ease;
-  border-radius: 50%;
 }
 
-.slider-arrow:hover {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.prev {
+/* ✅ Центрируем стрелки */
+.swiper-button-prev {
   left: 10px;
 }
-
-.next {
+.swiper-button-next {
   right: 10px;
+}
+
+/* ✅ Кастомные точки (пагинация) */
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.6); /* Прозрачные белые точки */
+  opacity: 0.5;
+  width: 12px;
+  height: 12px;
+  margin: 0 5px;
+  transition: opacity 0.3s;
+}
+
+.swiper-pagination-bullet-active {
+  background: white;
+  opacity: 1;
+}
+
+/* ✅ Модальное окно */
+.license-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+}
+
+.license-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+}
+
+.license-modal.active {
+  display: flex;
+}
+
+/* Кнопка закрытия */
+.license-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  font-weight: bold;
+}
+
+.license-modal-close:hover {
+  opacity: 0.8;
+}
+
+/* ✅ АДАПТИВНОСТЬ */
+@media (max-width: 768px) {
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+  }
+
+  .license-img {
+    width: 220px;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+  }
+
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 20px;
+  }
 }
 
 /* ============================

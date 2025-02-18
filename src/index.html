@@ -9,6 +9,12 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
     />
+    <!-- Swiper.js (CSS + JS) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   </head>
   <body>
     <div id="header"></div>
@@ -179,56 +185,66 @@
           </div>
         </div>
       </section>
-
-      <!-- НАШИ ЛИЦЕНЗИИ -->
-      <section id="licenses" class="licenses" data-aos="fade-up">
+      <!-- 🔹 НАШИ ЛИЦЕНЗИИ -->
+      <section class="licenses" id="licenses" data-aos="fade-up">
         <div class="container">
           <h2>Наши лицензии</h2>
 
-          <!-- Слайдер с лицензиями -->
-          <div class="licenses__slider">
-            <button class="slider-arrow prev">&#10094;</button>
-            <div class="licenses__gallery">
-              <div class="slide">
+          <!-- Swiper контейнер -->
+          <div class="swiper licenses__slider">
+            <div class="swiper-wrapper">
+              <!-- Слайды -->
+              <div class="swiper-slide">
                 <img
-                  src="assets/documents/AnikikinUved.webp"
+                  src="assets/documents/AnikkinUved.webp"
                   alt="Лицензия 1"
                   class="license-img"
                 />
               </div>
-              <div class="slide">
+              <div class="swiper-slide">
                 <img
                   src="assets/documents/attestatAnikin.webp"
                   alt="Лицензия 2"
                   class="license-img"
                 />
               </div>
-              <div class="slide">
+              <div class="swiper-slide">
                 <img
-                  src="assets/documents/attestatEvseeva.webp"
+                  src="assets/documents/AttetstatAnikin-2.webp"
                   alt="Лицензия 3"
                   class="license-img"
                 />
               </div>
-              <div class="slide">
+              <div class="swiper-slide">
                 <img
-                  src="assets/documents/UdostoverenieAnikin.webp"
+                  src="assets/documents/UdostoverenieAnikin-2.webp"
                   alt="Лицензия 4"
                   class="license-img"
                 />
               </div>
+              <div class="swiper-slide">
+                <img
+                  src="assets/documents/UdostoverenieAnikin.webp"
+                  alt="Лицензия 5"
+                  class="license-img"
+                />
+              </div>
             </div>
-            <button class="slider-arrow next">&#10095;</button>
+
+            <!-- Стрелки -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+            <!-- Пагинация (точки) -->
+            <div class="swiper-pagination"></div>
           </div>
         </div>
       </section>
 
-      <!-- Модальное окно для увеличенного просмотра -->
-      <div class="modal-overlay">
-        <div class="modal-content">
-          <span class="modal-close">&times;</span>
-          <img id="modal-img" src="" alt="Просмотр лицензии" />
-        </div>
+      <!-- Модальное окно для просмотра изображений -->
+      <div class="license-modal" id="licenseModal">
+        <span class="license-modal-close" id="licenseModalClose">&times;</span>
+        <img id="licenseModalImg" src="" alt="Лицензия" />
       </div>
 
       <!-- ФОРМА ЗАЯВКИ -->
