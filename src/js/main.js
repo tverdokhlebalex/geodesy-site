@@ -2,6 +2,11 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+// Определяем базовый путь (локально или GitHub Pages)
+const basePath = window.location.hostname.includes("github.io")
+  ? "/geodesy-site"
+  : "";
+
 // 🚀 Функция загрузки HTML-файлов (Header & Footer)
 async function loadComponent(selector, file) {
   const element = document.querySelector(selector);
@@ -35,9 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
     duration: 800, // Длительность анимации (мс)
   });
 
-  // Загружаем header и footer
-  loadComponent("#header", "/components/header.html");
-  loadComponent("#footer", "/components/footer.html");
+  // Загружаем header и footer с учетом пути
+  loadComponent("#header", `${basePath}/components/header.html`);
+  loadComponent("#footer", `${basePath}/components/footer.html`);
 });
 
 // 🎯 Функция для инициализации мобильного меню
