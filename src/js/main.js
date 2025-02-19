@@ -1,8 +1,11 @@
-// Импорт AOS (если установлен через npm)
+// 📌 Импортируем AOS (анимация) - теперь локально через npm
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-// Определяем базовый путь (локально или GitHub Pages)
+// 📌 Импортируем функцию отправки заявок в Telegram
+import { sendTelegramMessage } from "./telegram-bot.js";
+
+// 📌 Определяем базовый путь (локально или GitHub Pages)
 const basePath = window.location.hostname.includes("github.io")
   ? "/geodesy-site"
   : "";
@@ -10,57 +13,38 @@ const basePath = window.location.hostname.includes("github.io")
 // 🚀 Функция загрузки HTML-файлов (Header & Footer)
 async function loadComponent(selector, file) {
   const element = document.querySelector(selector);
-  if (element) {
-    try {
-      const response = await fetch(file);
-      if (response.ok) {
-        element.innerHTML = await response.text();
-        console.log(`✅ Загружен компонент: ${file}`);
+  if (!element) return;
 
-        // Если это хедер, повторно инициализируем мобильное меню
-        if (selector === "#header") {
-          initMobileMenu();
-        }
-      } else {
-        console.error(
-          `❌ Ошибка загрузки: ${file}, статус: ${response.status}`
-        );
-      }
-    } catch (error) {
-      console.error(`❌ Ошибка запроса: ${file}`, error);
+  try {
+    const response = await fetch(`${basePath}${file}`);
+    if (!response.ok) throw new Error(`Ошибка загрузки: ${file}`);
+
+    element.innerHTML = await response.text();
+    console.log(`✅ Загружен компонент: ${file}`);
+
+    // Если загружен хедер, инициализируем мобильное меню
+    if (selector === "#header") {
+      initMobileMenu();
     }
+  } catch (error) {
+    console.error(`❌ Ошибка загрузки ${file}:`, error);
   }
 }
 
-// 📌 Инициализация AOS и загрузка компонентов при загрузке DOM
-document.addEventListener("DOMContentLoaded", () => {
-  AOS.init({
-    once: true, // Запуск анимации один раз
-    offset: 100, // Смещение при появлении
-    duration: 800, // Длительность анимации (мс)
-  });
-
-  // Загружаем header и footer с учетом пути
-  loadComponent("#header", `${basePath}/components/header.html`);
-  loadComponent("#footer", `${basePath}/components/footer.html`);
-});
-
-// 🎯 Функция для инициализации мобильного меню
+// 📌 Функция инициализации мобильного меню
 function initMobileMenu() {
   const burgerIcon = document.querySelector(".icon-menu-mobile");
   const mobileMenu = document.querySelector(".main-menu");
   const closeMenuBtn = document.querySelector(".close-menu");
 
   if (!burgerIcon || !mobileMenu || !closeMenuBtn) {
-    console.error("❌ Ошибка: Один из элементов меню не найден!");
+    console.error("❌ Ошибка: Элементы мобильного меню не найдены!");
     return;
   }
 
   function toggleMobileMenu() {
     mobileMenu.classList.toggle("opened");
     burgerIcon.classList.toggle("active");
-
-    // Блокируем прокрутку при открытом меню
     document.body.style.overflow = mobileMenu.classList.contains("opened")
       ? "hidden"
       : "";
@@ -72,14 +56,54 @@ function initMobileMenu() {
     document.body.style.overflow = "";
   }
 
-  // Добавляем обработчики событий
+  // Обработчики событий
   burgerIcon.addEventListener("click", toggleMobileMenu);
   closeMenuBtn.addEventListener("click", closeMobileMenu);
 
-  // Закрываем мобильное меню при клике на любую ссылку
   document.querySelectorAll(".mobile-nav li a").forEach((link) => {
     link.addEventListener("click", closeMobileMenu);
   });
 
   console.log("✅ Мобильное меню инициализировано");
 }
+
+// 📌 Функция обработки формы отправки заявки
+function initFormHandler() {
+  const form = document.querySelector(".modal-form");
+  if (!form) return;
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault();
+
+    const name = form.querySelector("input[type='text']").value.trim();
+    const phone = form.querySelector("input[type='tel']").value.trim();
+
+    if (!name || !phone) {
+      alert("⚠️ Пожалуйста, заполните все поля!");
+      return;
+    }
+
+    try {
+      // Отправляем данные в Telegram
+      await sendTelegramMessage(name, phone);
+      alert("✅ Заявка отправлена! Мы скоро свяжемся с вами.");
+      form.reset();
+    } catch (error) {
+      console.error("❌ Ошибка отправки заявки:", error);
+      alert("❌ Ошибка отправки! Попробуйте позже.");
+    }
+  });
+}
+
+// 📌 Запуск всех функций при загрузке страницы
+document.addEventListener("DOMContentLoaded", () => {
+  // ✅ Запуск анимации AOS
+  AOS.init({ once: true, offset: 100, duration: 800 });
+
+  // ✅ Загружаем Header и Footer (убрали /src/)
+  loadComponent("#header", "/components/header.html");
+  loadComponent("#footer", "/components/footer.html");
+
+  // ✅ Инициализируем обработчик формы
+  initFormHandler();
+});
