@@ -1,7 +1,5 @@
 // 📌 Импортируем переменные из .env
-const botToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
-const chatId = import.meta.env.VITE_TELEGRAM_CHAT_ID; // ID общего чата
-
+import { botToken, chatId } from "./config.js";
 // 📩 Функция отправки заявки в Telegram
 export async function sendTelegramMessage(name, phone) {
   if (!botToken || !chatId) {
@@ -32,5 +30,6 @@ export async function sendTelegramMessage(name, phone) {
     console.error("❌ Ошибка сети при отправке в Telegram:", error);
   }
 }
-console.log("🔹 Токен бота:", import.meta.env.VITE_TELEGRAM_BOT_TOKEN);
-console.log("🔹 Чат ID:", import.meta.env.VITE_TELEGRAM_CHAT_ID);
+console.log("🔹 Проверка import.meta.env:", import.meta.env);
+console.log("🔹 TELEGRAM_BOT_TOKEN:", import.meta.env.VITE_TELEGRAM_BOT_TOKEN);
+console.log("🔹 TELEGRAM_CHAT_ID:", import.meta.env.VITE_TELEGRAM_CHAT_ID);

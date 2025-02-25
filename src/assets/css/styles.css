@@ -358,6 +358,7 @@ img {
   cursor: pointer;
   transition: background 0.3s;
 }
+
 .modal-form button:hover {
   background: #00d3c4;
 }
@@ -444,7 +445,7 @@ img {
   grid-template-columns: repeat(
     auto-fit,
     minmax(280px, 1fr)
-  ); /* Автоматическая адаптация */
+  ); /* Адаптивная сетка */
   gap: 30px;
   justify-content: center;
 }
@@ -457,24 +458,33 @@ img {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 220px; /* Минимальная высота для выравнивания */
 }
 
+/* Иконки услуг */
 .service-item img {
-  width: 70px;
-  height: 70px;
+  width: 65px;
+  height: 65px;
   margin-bottom: 15px;
+  transition: transform 0.3s ease;
 }
 
+/* Заголовки */
 .service-item h3 {
   font-size: 20px;
   color: white;
   margin-bottom: 10px;
 }
 
+/* Описание */
 .service-item p {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.5;
+  max-width: 90%;
 }
 
 /* Ховер-эффект */
@@ -483,18 +493,69 @@ img {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
+.service-item:hover img {
+  transform: scale(1.1); /* Легкое увеличение иконки при наведении */
+}
+
 /* Адаптация */
-@media (max-width: 768px) {
-  .services__grid {
-    grid-template-columns: 1fr;
+@media (max-width: 992px) {
+  .services {
+    padding: 70px 15px;
   }
 
+  .services h2 {
+    font-size: 30px;
+  }
+
+  .service-item {
+    min-height: 200px; /* Чуть меньше на планшетах */
+  }
+}
+
+@media (max-width: 768px) {
   .services {
     padding: 60px 15px;
   }
 
   .services h2 {
     font-size: 28px;
+  }
+
+  .services__grid {
+    grid-template-columns: 1fr; /* Одна колонка */
+  }
+
+  .service-item {
+    padding: 25px;
+    min-height: auto; /* Убираем фиксированную высоту, чтобы адаптировалось */
+  }
+}
+
+@media (max-width: 480px) {
+  .services {
+    padding: 50px 10px;
+  }
+
+  .services h2 {
+    font-size: 26px;
+  }
+
+  .service-item {
+    padding: 20px;
+  }
+
+  .service-item img {
+    width: 55px;
+    height: 55px;
+  }
+
+  .service-item h3 {
+    font-size: 18px;
+  }
+
+  .service-item p {
+    font-size: 13px;
+    max-width: 95%;
   }
 }
 
@@ -513,7 +574,7 @@ img {
 }
 
 .why-us h2 {
-  color: var(--accent-color);
+  color: #fff;
   margin-bottom: 40px;
   font-size: 28px;
   font-weight: bold;
@@ -598,7 +659,7 @@ img {
 }
 
 .licenses h2 {
-  color: var(--accent-color);
+  color: #fff;
   margin-bottom: 30px;
   font-size: 28px;
 }
@@ -757,8 +818,7 @@ img {
 }
 
 .modal-content img {
-  width: auto;
-  height: 90vh;
+  width: 25px;
   border-radius: 8px;
 }
 

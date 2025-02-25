@@ -4,7 +4,8 @@ import copy from "rollup-plugin-copy";
 
 export default defineConfig({
   base: "/geodesy-site/", // Указываем base, чтобы GitHub Pages корректно работал
-  root: "src", // Указываем корневую папку как src
+  root: "src",
+  envPrefix: "VITE_",
   build: {
     outDir: "../dist", // Выходная директория
     emptyOutDir: true, // Очищаем перед билдом
