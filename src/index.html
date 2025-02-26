@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Главная - Геодезические Услуги</title>
     <link rel="stylesheet" href="./assets/css/styles.css" />
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
 
     <!-- Swiper.js (CSS + JS) -->
     <link
@@ -34,17 +29,18 @@
       </div>
     </section>
 
-    <!-- МОДАЛЬНОЕ ОКНО -->
+    <!-- МОДАЛЬНОЕ ОКНО (форма заявки) -->
     <div class="modal-overlay" id="modalOverlay">
       <div class="modal-content">
         <!-- Кнопка закрытия -->
         <span class="modal-close" id="modalClose">&times;</span>
         <h2>Оставьте заявку</h2>
 
-        <!-- Форма с именем и телефоном -->
-        <form class="modal-form">
-          <input type="text" placeholder="Ваше имя" required />
-          <input type="tel" placeholder="Телефон" required />
+        <!-- Форма заявки -->
+        <form class="modal-form" id="modalForm">
+          <input type="text" id="modal-name" placeholder="Ваше имя" required />
+          <input type="tel" id="modal-phone" placeholder="Телефон" required />
+          <textarea id="modal-message" placeholder="Ваш вопрос"></textarea>
           <button type="submit" class="btn">Отправить</button>
         </form>
 
@@ -72,6 +68,7 @@
     </div>
 
     <main>
+      <!-- Услуги -->
       <section id="services" class="services">
         <div class="container">
           <h2 data-aos="fade-up">Наши услуги</h2>
@@ -155,42 +152,31 @@
         </div>
       </section>
 
-      <!-- ПОЧЕМУ ВЫБИРАЮТ НАС? -->
+      <!-- Почему выбирают нас? -->
       <section id="why-us" class="why-us" data-aos="fade-up">
         <div class="container">
           <h2>Почему выбирают нас?</h2>
           <div class="why-us__grid">
-            <!-- Опыт более 11 лет -->
             <div class="why-item" data-aos="fade-up">
               <img src="assets/icons/experience.svg" alt="Опыт" />
               <p><strong>Опыт более 11 лет</strong></p>
             </div>
-
-            <!-- Работаем "под ключ" -->
             <div class="why-item" data-aos="fade-up" data-aos-delay="100">
               <img src="assets/icons/key.svg" alt="Под ключ" />
               <p><strong>Работаем «под ключ»</strong></p>
             </div>
-
-            <!-- Решаем сложные и нестандартные задачи -->
             <div class="why-item" data-aos="fade-up" data-aos-delay="200">
               <img src="assets/icons/challenge.svg" alt="Сложные задачи" />
               <p><strong>Решаем сложные и нестандартные задачи</strong></p>
             </div>
-
-            <!-- Нацелены на положительный результат -->
             <div class="why-item" data-aos="fade-up" data-aos-delay="300">
               <img src="assets/icons/result.svg" alt="Результат" />
               <p><strong>Нацелены на положительный результат</strong></p>
             </div>
-
-            <!-- Оформлено более 10 000 объектов -->
             <div class="why-item" data-aos="fade-up" data-aos-delay="400">
               <img src="assets/icons/documents.svg" alt="10 000 объектов" />
               <p><strong>Оформлено более 1 000 объектов</strong></p>
             </div>
-
-            <!-- Работаем официально и по договору -->
             <div class="why-item" data-aos="fade-up" data-aos-delay="500">
               <img src="assets/icons/contract.svg" alt="Официальная работа" />
               <p><strong>Работаем официально и по договору</strong></p>
@@ -198,7 +184,91 @@
           </div>
         </div>
       </section>
-      <!-- 🔹 НАШИ ЛИЦЕНЗИИ -->
+
+      <!-- Нам доверяют -->
+      <section id="clients" class="clients" data-aos="fade-up">
+        <div class="container">
+          <h2>Нам доверяют</h2>
+
+          <!-- Грид (Desktop) -->
+          <div class="clients__grid">
+            <div class="client-item">
+              <p>ТОРЭКО</p>
+              <img src="assets/logo/toreko.jpg" alt="ТОРЭКО" />
+            </div>
+            <div class="client-item">
+              <p>Завод "Сокол"</p>
+              <img src="assets/logo/sokol.webp" alt="Завод Сокол" />
+            </div>
+            <div class="client-item">
+              <p>Торговый комплекс "Форум"</p>
+              <img src="assets/logo/forum.png" alt="Форум" />
+            </div>
+            <div class="client-item">
+              <p>Газпром трансгаз Саратов</p>
+              <img src="assets/logo/gazprom.webp" alt="Газпром" />
+            </div>
+            <div class="client-item">
+              <p>ЗАО "УПТК-1"</p>
+              <img src="assets/logo/arma.png" alt="УПТК-1" />
+            </div>
+            <div class="client-item">
+              <p>ООО "ИНЖЕКТ"</p>
+              <img src="assets/logo/inzhect.webp" alt="ИНЖЕКТ" />
+            </div>
+            <div class="client-item">
+              <p>ООО "Сокур плюс"</p>
+            </div>
+            <div class="client-item">
+              <p>АО "Химфармреактив"</p>
+            </div>
+            <div class="client-item">
+              <p>ООО "Лысогорский Элеватор"</p>
+            </div>
+          </div>
+
+          <!-- Слайдер (Mobile) -->
+          <div class="mobile-slider">
+            <div class="mobile-slider__track">
+              <div class="mobile-slide client-item">
+                <p>ТОРЭКО</p>
+                <img src="assets/logo/toreko.jpg" alt="ТОРЭКО" />
+              </div>
+              <div class="mobile-slide client-item">
+                <p>Завод "Сокол"</p>
+                <img src="assets/logo/sokol.webp" alt="Сокол" />
+              </div>
+              <div class="mobile-slide client-item">
+                <p>Торговый комплекс "Форум"</p>
+                <img src="assets/logo/forum.png" alt="Форум" />
+              </div>
+              <div class="mobile-slide client-item">
+                <p>Газпром трансгаз Саратов</p>
+                <img src="assets/logo/gazprom.webp" alt="Газпром" />
+              </div>
+              <div class="mobile-slide client-item">
+                <p>ЗАО "УПТК-1"</p>
+                <img src="assets/logo/arma.png" alt="УПТК-1" />
+              </div>
+              <div class="mobile-slide client-item">
+                <p>ООО "ИНЖЕКТ"</p>
+                <img src="assets/logo/inzhect.webp" alt="ИНЖЕКТ" />
+              </div>
+              <div class="mobile-slide client-item">
+                <p>ООО "Сокур плюс"</p>
+              </div>
+              <div class="mobile-slide client-item">
+                <p>АО "Химфармреактив"</p>
+              </div>
+              <div class="mobile-slide client-item">
+                <p>ООО "Лысогорский Элеватор"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Наши лицензии -->
       <section class="licenses" id="licenses" data-aos="fade-up">
         <div class="container">
           <h2>Наши лицензии</h2>
@@ -254,25 +324,27 @@
         </div>
       </section>
 
-      <!-- Модальное окно для просмотра изображений -->
+      <!-- Модальное окно для просмотра лицензий -->
       <div class="license-modal" id="licenseModal">
         <span class="license-modal-close" id="licenseModalClose">&times;</span>
         <img id="licenseModalImg" src="" alt="Лицензия" />
       </div>
 
-      <!-- ФОРМА ЗАЯВКИ -->
+      <!-- Форма заявки -->
       <section id="contact-form" class="contact-form" data-aos="fade-up">
         <div class="container">
           <h2>Оставьте заявку</h2>
-          <form>
-            <input type="text" placeholder="Ваше имя" required />
-            <input type="tel" placeholder="Телефон" required />
-            <textarea placeholder="Ваш вопрос"></textarea>
+          <form id="contactForm">
+            <input type="text" id="name" placeholder="Ваше имя" required />
+            <input type="tel" id="phone" placeholder="Телефон" required />
+            <textarea id="message" placeholder="Ваш вопрос"></textarea>
             <button type="submit">Отправить</button>
           </form>
         </div>
       </section>
     </main>
+
+    <!-- Подключение AOS в конце (с integrity) -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
       integrity="sha512-28rVCSfnGkY5QqyCq5S4v9oNmrZq0/7c7M36+Tn2l6JEt3y6zNBzdyzEOXJl9DSBe0Cvo1HSZkNVFfEWqUGTBA=="
@@ -281,9 +353,13 @@
     ></script>
 
     <div id="footer"></div>
+
+    <!-- Основные скрипт -->
     <script type="module" src="./js/zayavka-windows.js"></script>
     <script type="module" src="./js/main.js"></script>
     <script type="module" src="./js/uslugi.js"></script>
+    <script type="module" src="./js/form-handler.js"></script>
     <script type="module" src="./js/lisenzii.js"></script>
+    <script type="module" src="./js/clients.js"></script>
   </body>
 </html>

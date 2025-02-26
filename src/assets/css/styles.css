@@ -17,15 +17,15 @@ body {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth; /* плавная прокрутка */
+  overflow-x: hidden; /* Убираем горизонтальную прокрутку */
 }
 
 :root {
   --bg-dark: #101010;
   --text-light: #eee;
   --accent-color: #00b2a2;
-
-  /* при необходимости добавьте другие переменные */
   --glass-border: rgba(255, 255, 255, 0.2);
+  --main-green: #00b2a2; /* переменная под заголовки h2 */
 }
 
 a {
@@ -49,20 +49,17 @@ img {
 }
 
 /* ==============================
-         2) ШАПКА (ХЕДЕР)
-         ============================== */
+            2) ШАПКА (ХЕДЕР)
+      ============================== */
 .header-upgrade {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 70px;
-
-  /* Стеклянный эффект */
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--glass-border);
-
   display: flex;
   align-items: center;
   z-index: 1000;
@@ -152,19 +149,17 @@ img {
 
 /* ===========================
          МОБИЛЬНОЕ МЕНЮ (Шторка)
-         =========================== */
+      =========================== */
 .main-menu {
   position: fixed;
   top: 0;
   right: -100%;
   width: 280px;
   height: 100vh;
-
   background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(15px);
   border-left: 1px solid var(--glass-border);
   box-shadow: -3px 0 10px rgba(0, 0, 0, 0.3);
-
   padding: 20px;
   transition: right 0.3s ease;
   z-index: 1100;
@@ -199,7 +194,7 @@ img {
 
 /* ============================
          АДАПТИВНОСТЬ ХЕДЕРА
-         ============================ */
+      ============================ */
 @media (max-width: 1024px) {
   .header-upgrade__nav-desktop {
     display: none; /* прячем десктопное меню */
@@ -220,7 +215,7 @@ img {
   }
 }
 
-/* =============== HERO-СЕКЦИЯ (Обновлённая) =============== */
+/* =============== HERO-СЕКЦИЯ =============== */
 .hero {
   min-height: 80vh;
   display: flex;
@@ -230,8 +225,6 @@ img {
   position: relative;
   overflow: hidden;
   color: #eee;
-
-  /* Тёмный градиент + фоновое изображение */
   background: linear-gradient(
       to bottom,
       rgba(16, 16, 16, 0.7),
@@ -248,27 +241,23 @@ img {
   border-radius: 8px;
   transition: transform 0.3s;
 }
-
 .hero__content h1 {
   font-size: 2.2rem;
   margin-bottom: 15px;
   line-height: 1.3;
 }
-
 .hero__content p {
   margin-bottom: 30px;
   color: #ccc;
   font-size: 1rem;
   line-height: 1.4;
 }
-
 .hero__content:hover {
   transform: scale(1.01);
 }
 
 /* Кнопка "Оставить заявку" */
 .btn-open-modal {
-  /* Можно переопределить стили вашей .btn, если хотите иной вид */
   background: var(--accent-color);
   color: #fff;
   padding: 12px 24px;
@@ -283,22 +272,20 @@ img {
   transform: translateY(-2px);
 }
 
-/* =============== МОДАЛЬНОЕ ОКНО =============== */
-/* Затенённая подложка */
+/* =============== МОДАЛЬНОЕ ОКНО (форма) =============== */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6); /* полупрозрачная тень */
+  background: rgba(0, 0, 0, 0.6);
   display: none; /* скрыта по умолчанию */
   align-items: center;
   justify-content: center;
   z-index: 2000;
   backdrop-filter: blur(4px);
 }
-/* Само окно */
 .modal-content {
   background: #1a1a1a;
   padding: 30px;
@@ -307,7 +294,6 @@ img {
   max-width: 400px;
   position: relative;
   color: #eee;
-  /* Анимация появления (можно изменить) */
   animation: modalFadeIn 0.4s ease;
 }
 @keyframes modalFadeIn {
@@ -320,7 +306,6 @@ img {
     opacity: 1;
   }
 }
-/* Кнопка закрытия (крестик) */
 .modal-close {
   position: absolute;
   top: 15px;
@@ -334,19 +319,22 @@ img {
 .modal-close:hover {
   color: #fff;
 }
-/* Форма внутри модалки */
 .modal-form {
   display: grid;
   gap: 15px;
   margin: 20px 0;
 }
-.modal-form input {
+.modal-form input,
+.modal-form textarea {
   background: #242424;
   border: 1px solid #333;
   border-radius: 4px;
   color: #eee;
   padding: 10px;
   font-size: 14px;
+}
+.modal-form textarea {
+  min-height: 60px;
 }
 .modal-form button {
   background: var(--accent-color);
@@ -358,11 +346,9 @@ img {
   cursor: pointer;
   transition: background 0.3s;
 }
-
 .modal-form button:hover {
   background: #00d3c4;
 }
-/* Блок с быстрыми ссылками в мессенджеры */
 .modal-quick-links {
   display: flex;
   flex-direction: column;
@@ -391,13 +377,11 @@ img {
   width: 20px;
   height: 20px;
 }
-
-/* =============== ОТОБРАЖЕНИЕ (ПОКАЗ) МОДАЛКИ =============== */
 .modal-overlay.active {
   display: flex; /* делаем видимым (flex-центрирование) */
 }
 
-/* =============== АДАПТИВНОСТЬ =============== */
+/* Адаптивность Hero */
 @media (max-width: 768px) {
   .hero__content h1 {
     font-size: 1.8rem;
@@ -407,7 +391,7 @@ img {
   }
 }
 
-/* Кнопка .btn */
+/* Кнопка .btn (общий стиль) */
 .btn {
   display: inline-block;
   background: var(--accent-color);
@@ -422,9 +406,9 @@ img {
   transform: translateY(-2px);
 }
 
-/* Блок "Наши услуги" */
+/* =============== Блок "Наши услуги" =============== */
 .services {
-  background: rgba(255, 255, 255, 0.1); /* Легкий стеклянный эффект */
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   padding: 80px 20px;
   text-align: center;
@@ -432,27 +416,21 @@ img {
   margin: 40px auto;
   max-width: 1200px;
 }
-
 .services h2 {
   font-size: 32px;
   color: var(--main-green);
   margin-bottom: 40px;
 }
-
 /* Сетка карточек */
 .services__grid {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(280px, 1fr)
-  ); /* Адаптивная сетка */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
   justify-content: center;
 }
-
 /* Карточка услуги */
 .service-item {
-  background: rgba(255, 255, 255, 0.15); /* Полупрозрачный фон */
+  background: rgba(255, 255, 255, 0.15);
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -461,98 +439,82 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 220px; /* Минимальная высота для выравнивания */
+  justify-content: flex-start;
+  height: 100%;
 }
-
-/* Иконки услуг */
+.service-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
 .service-item img {
   width: 65px;
   height: 65px;
   margin-bottom: 15px;
   transition: transform 0.3s ease;
 }
-
-/* Заголовки */
 .service-item h3 {
   font-size: 20px;
   color: white;
   margin-bottom: 10px;
 }
-
-/* Описание */
 .service-item p {
   font-size: 14px;
   color: rgba(255, 255, 255, 0.8);
   line-height: 1.5;
   max-width: 90%;
+  text-align: center;
 }
-
-/* Ховер-эффект */
 .service-item:hover {
   transform: translateY(-8px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
-
 .service-item:hover img {
-  transform: scale(1.1); /* Легкое увеличение иконки при наведении */
+  transform: scale(1.1);
 }
-
-/* Адаптация */
+/* Адаптивность .services */
 @media (max-width: 992px) {
   .services {
     padding: 70px 15px;
   }
-
   .services h2 {
     font-size: 30px;
   }
-
-  .service-item {
-    min-height: 200px; /* Чуть меньше на планшетах */
-  }
 }
-
 @media (max-width: 768px) {
   .services {
     padding: 60px 15px;
   }
-
   .services h2 {
     font-size: 28px;
   }
-
   .services__grid {
     grid-template-columns: 1fr; /* Одна колонка */
   }
-
   .service-item {
     padding: 25px;
-    min-height: auto; /* Убираем фиксированную высоту, чтобы адаптировалось */
+    height: auto;
   }
 }
-
 @media (max-width: 480px) {
   .services {
     padding: 50px 10px;
   }
-
   .services h2 {
     font-size: 26px;
   }
-
   .service-item {
     padding: 20px;
   }
-
   .service-item img {
     width: 55px;
     height: 55px;
   }
-
   .service-item h3 {
     font-size: 18px;
   }
-
   .service-item p {
     font-size: 13px;
     max-width: 95%;
@@ -567,26 +529,21 @@ img {
   background: #1a1a1a;
   text-align: center;
 }
-
 .why-us .container {
-  max-width: 1200px; /* Устанавливаем максимальную ширину */
+  max-width: 1200px;
   margin: 0 auto;
 }
-
 .why-us h2 {
   color: #fff;
   margin-bottom: 40px;
   font-size: 28px;
   font-weight: bold;
 }
-
-/* Сетка 3 в ряд (адаптивная) */
 .why-us__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
-
 .why-item {
   display: flex;
   align-items: center;
@@ -596,90 +553,154 @@ img {
   padding: 15px 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .why-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
 }
-
 .why-item img {
   width: 50px;
   height: 50px;
   flex-shrink: 0;
   transition: transform 0.3s ease;
 }
-
 .why-item:hover img {
   transform: scale(1.1);
 }
-
 .why-item p {
   color: #ccc;
   font-size: 16px;
   line-height: 1.5;
   text-align: left;
 }
-
-/* 🔹 АДАПТИВНОСТЬ 🔹 */
+/* Адаптивность why-us */
 @media (max-width: 1000px) {
   .why-us__grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 в ряд */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-
 @media (max-width: 600px) {
   .why-us__grid {
-    grid-template-columns: 1fr; /* 1 в ряд */
+    grid-template-columns: 1fr;
     gap: 20px;
   }
-
   .why-item {
     flex-direction: row;
     align-items: center;
     text-align: left;
     padding: 15px;
   }
-
   .why-item img {
     width: 40px;
     height: 40px;
   }
-
   .why-item p {
     font-size: 14px;
   }
 }
 
 /* =======================
-      БЛОК "НАШИ ЛИЦЕНЗИИ"
-   ======================= */
+         БЛОК "НАМ ДОВЕРЯЮТ"
+      ======================= */
+.clients {
+  padding: 80px 20px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  margin: 40px auto;
+  max-width: 1200px;
+}
+.clients h2 {
+  font-size: 32px;
+  color: var(--main-green);
+  margin-bottom: 40px;
+}
+/* Grid (desktop) */
+.clients__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+.client-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+  height: 150px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.client-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.client-item p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.client-item img {
+  width: 120px;
+  max-width: 120px;
+  max-height: 50px;
+  object-fit: contain;
+}
+/* Мобильный слайдер (по умолчанию скрыт) */
+.mobile-slider {
+  display: none;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
+}
+.mobile-slider__track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+}
+.mobile-slide {
+  flex: 0 0 auto; /* чтобы не сжимался */
+}
+/* Адаптивность */
+@media (max-width: 768px) {
+  .clients__grid {
+    display: none; /* скрываем грид */
+  }
+  .mobile-slider {
+    display: block; /* показываем слайдер */
+  }
+}
+
+/* ============================
+         БЛОК "ЛИЦЕНЗИИ" (Swiper)
+      ============================ */
 .licenses {
   padding: 60px 20px;
   text-align: center;
 }
-
 .licenses h2 {
   color: #fff;
   margin-bottom: 30px;
   font-size: 28px;
 }
-
-/* ✅ Swiper СЛАЙДЕР */
+/* Swiper */
 .licenses__slider {
   max-width: 1200px;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
 }
-
-/* ✅ Слайды */
 .swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-/* ✅ Центрирование изображений в слайдере */
 .license-img {
   width: 280px;
   height: auto;
@@ -689,12 +710,10 @@ img {
   display: block;
   margin: 0 auto;
 }
-
 .license-img:hover {
   transform: scale(1.05);
 }
-
-/* ✅ Кастомные стрелки Swiper */
+/* Стрелки Swiper */
 .swiper-button-next,
 .swiper-button-prev {
   color: #fff;
@@ -705,31 +724,42 @@ img {
   justify-content: center;
   transition: background 0.3s ease;
 }
-
-/* ✅ Центрируем стрелки */
 .swiper-button-prev {
   left: 10px;
 }
 .swiper-button-next {
   right: 10px;
 }
-
-/* ✅ Кастомные точки (пагинация) */
+/* Точки (пагинация) */
 .swiper-pagination-bullet {
-  background: rgba(255, 255, 255, 0.6); /* Прозрачные белые точки */
+  background: rgba(255, 255, 255, 0.6);
   opacity: 0.5;
   width: 12px;
   height: 12px;
   margin: 0 5px;
   transition: opacity 0.3s;
 }
-
 .swiper-pagination-bullet-active {
   background: white;
   opacity: 1;
 }
+/* Адаптивность Swiper */
+@media (max-width: 768px) {
+  .license-img {
+    width: 220px;
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+  }
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 20px;
+  }
+}
 
-/* ✅ Модальное окно */
+/* Модальное окно увеличения лицензий */
 .license-modal {
   position: fixed;
   top: 0;
@@ -743,19 +773,15 @@ img {
   justify-content: center;
   z-index: 3000;
 }
-
 .license-modal img {
   max-width: 90%;
   max-height: 90%;
   border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
 }
-
 .license-modal.active {
   display: flex;
 }
-
-/* Кнопка закрытия */
 .license-modal-close {
   position: absolute;
   top: 20px;
@@ -766,120 +792,13 @@ img {
   transition: opacity 0.3s;
   font-weight: bold;
 }
-
 .license-modal-close:hover {
   opacity: 0.8;
 }
 
-/* ✅ АДАПТИВНОСТЬ */
-@media (max-width: 768px) {
-  .swiper-slide {
-    display: flex;
-    justify-content: center;
-  }
-
-  .license-img {
-    width: 220px;
-  }
-
-  .swiper-button-next,
-  .swiper-button-prev {
-    width: 40px;
-    height: 40px;
-  }
-
-  .swiper-button-next::after,
-  .swiper-button-prev::after {
-    font-size: 20px;
-  }
-}
-
 /* ============================
-         МОДАЛЬНОЕ ОКНО (Просмотр)
-        ============================ */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(8px);
-}
-
-.modal-content {
-  position: relative;
-  max-width: 90%;
-  max-height: 90%;
-}
-
-.modal-content img {
-  width: 25px;
-  border-radius: 8px;
-}
-
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 30px;
-  color: #fff;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.modal-close:hover {
-  color: #ff6600;
-}
-
-/* ============================
-         АДАПТИВНОСТЬ
-        ============================ */
-@media (max-width: 768px) {
-  .licenses__gallery {
-    gap: 10px;
-  }
-
-  .license-img {
-    width: 250px;
-  }
-
-  .slider-arrow {
-    font-size: 20px;
-    padding: 8px;
-  }
-
-  .modal-content img {
-    height: 80vh;
-  }
-}
-
-@media (max-width: 480px) {
-  .licenses {
-    padding: 40px 10px;
-  }
-
-  .license-img {
-    width: 220px;
-  }
-
-  .slider-arrow {
-    font-size: 18px;
-    padding: 6px;
-  }
-
-  .modal-content img {
-    height: 75vh;
-  }
-}
-
-/* ============================
-         7) ФОРМА ЗАЯВКИ (contact-form)
-         ============================ */
+         ФОРМА ЗАЯВКИ contact-form
+      ============================ */
 .contact-form {
   background: #181818;
   padding: 60px 20px;
@@ -926,7 +845,7 @@ img {
 
 /* ============================
          8) ФУТЕР
-         ============================ */
+      ============================ */
 .footer {
   background: #111;
   padding: 30px 20px;
@@ -991,7 +910,7 @@ img {
 
 /* ============================
          9) АДАПТИВНОСТЬ ОСНОВНЫХ БЛОКОВ
-         ============================ */
+      ============================ */
 @media (max-width: 768px) {
   .services__grid,
   .why-us__grid {
