@@ -4,11 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Главная - Геодезические Услуги</title>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
 
     <!-- Swiper.js (CSS + JS) -->
     <link
@@ -16,8 +11,8 @@
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script type="module" crossorigin src="/geodesy-site/assets/main-DEhWbyAw.js"></script>
-    <link rel="stylesheet" crossorigin href="/geodesy-site/assets/main-C-i0fLKm.css">
+    <script type="module" crossorigin src="/geodesy-site/assets/main-Bh5_yAO7.js"></script>
+    <link rel="stylesheet" crossorigin href="/geodesy-site/assets/main-kHJ_sh9K.css">
   </head>
   <body>
     <div id="header"></div>
@@ -35,17 +30,18 @@
       </div>
     </section>
 
-    <!-- МОДАЛЬНОЕ ОКНО -->
+    <!-- МОДАЛЬНОЕ ОКНО (форма заявки) -->
     <div class="modal-overlay" id="modalOverlay">
       <div class="modal-content">
         <!-- Кнопка закрытия -->
         <span class="modal-close" id="modalClose">&times;</span>
         <h2>Оставьте заявку</h2>
 
-        <!-- Форма с именем и телефоном -->
-        <form class="modal-form">
-          <input type="text" placeholder="Ваше имя" required />
-          <input type="tel" placeholder="Телефон" required />
+        <!-- Форма заявки -->
+        <form class="modal-form" id="modalForm">
+          <input type="text" id="modal-name" placeholder="Ваше имя" required />
+          <input type="tel" id="modal-phone" placeholder="Телефон" required />
+          <textarea id="modal-message" placeholder="Ваш вопрос"></textarea>
           <button type="submit" class="btn">Отправить</button>
         </form>
 
@@ -73,6 +69,7 @@
     </div>
 
     <main>
+      <!-- Услуги -->
       <section id="services" class="services">
         <div class="container">
           <h2 data-aos="fade-up">Наши услуги</h2>
@@ -156,42 +153,31 @@
         </div>
       </section>
 
-      <!-- ПОЧЕМУ ВЫБИРАЮТ НАС? -->
+      <!-- Почему выбирают нас? -->
       <section id="why-us" class="why-us" data-aos="fade-up">
         <div class="container">
           <h2>Почему выбирают нас?</h2>
           <div class="why-us__grid">
-            <!-- Опыт более 11 лет -->
             <div class="why-item" data-aos="fade-up">
               <img src="data:image/svg+xml,%3c!DOCTYPE%20svg%20PUBLIC%20'-//W3C//DTD%20SVG%201.1//EN'%20'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Transformed%20by:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20version='1.1'%20id='Layer_1'%20xmlns:sketch='http://www.bohemiancoding.com/sketch/ns'%20xmlns='http://www.w3.org/2000/svg'%20xmlns:xlink='http://www.w3.org/1999/xlink'%20width='800px'%20height='800px'%20viewBox='0%200%2062%2064'%20enable-background='new%200%200%2062%2064'%20xml:space='preserve'%20fill='%23000000'%3e%3cg%20id='SVGRepo_bgCarrier'%20stroke-width='0'/%3e%3cg%20id='SVGRepo_tracerCarrier'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cg%20id='SVGRepo_iconCarrier'%3e%3ctitle%3eCup%3c/title%3e%3cdesc%3eCreated%20with%20Sketch.%3c/desc%3e%3cg%20id='Page-1'%20sketch:type='MSPage'%3e%3cg%20id='Cup'%20transform='translate(1.000000,%201.000000)'%20sketch:type='MSLayerGroup'%3e%3cpath%20id='Shape_1_'%20sketch:type='MSShapeGroup'%20fill='none'%20stroke='%2300b2a2'%20stroke-width='2'%20d='M11.5,4H0.1c0,0-2.4,30,24.5,30%20'/%3e%3cpath%20id='Shape_2_'%20sketch:type='MSShapeGroup'%20fill='none'%20stroke='%2300b2a2'%20stroke-width='2'%20d='M49.1,4h10.8%20c0,0,2.5,30-23.6,30'/%3e%3cpath%20id='Shape_3_'%20sketch:type='MSShapeGroup'%20fill='none'%20stroke='%2300b2a2'%20stroke-width='2'%20d='M19.2,55v-2c0-1.1,0.9-2,2.1-2%20l4.1-1c2-5,2.4-7.9,2.1-12h-1c-1.2,0-2.1-0.9-2.1-2.1v-3.1C13.3,28,11,10.4,11,0h39c0,10.5-2.3,28.1-13.4,32.8v3.1%20c0,1.2-1,2.1-2.1,2.1h-0.8c-0.3,4.1,0,7.1,2,12l5.1,1c1.1,0,2.1,0.9,2.1,2v2'/%3e%3cpath%20id='Shape_4_'%20sketch:type='MSShapeGroup'%20fill='none'%20stroke='%2300b2a2'%20stroke-width='2'%20d='M15.8,4.2%20c0,0,0.5,17.9,6.9,22.8'/%3e%3cpath%20id='Shape'%20sketch:type='MSShapeGroup'%20fill='none'%20stroke='%2300b2a2'%20stroke-width='2'%20d='M39,55h6.1c1.1,0,3.9,5,3.9,5%20c0,1.1-0.9,2-1.9,2H15c-1.1,0-1.9-0.9-1.9-2c0,0,2.8-5,3.9-5h6.1'/%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/svg%3e" alt="Опыт" />
               <p><strong>Опыт более 11 лет</strong></p>
             </div>
-
-            <!-- Работаем "под ключ" -->
             <div class="why-item" data-aos="fade-up" data-aos-delay="100">
               <img src="data:image/svg+xml,%3c!DOCTYPE%20svg%20PUBLIC%20'-//W3C//DTD%20SVG%201.1//EN'%20'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Transformed%20by:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20fill='%2300b2a2'%20width='800px'%20height='800px'%20viewBox='0%200%2032%2032'%20version='1.1'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='SVGRepo_bgCarrier'%20stroke-width='0'/%3e%3cg%20id='SVGRepo_tracerCarrier'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cg%20id='SVGRepo_iconCarrier'%3e%3cpath%20d='M30%205.984h-7.988v-1.938c0-1.655-1.346-3-3-3h-6.014c-1.655%200-3%201.345-3%203v1.938h-7.999c-1.099%200-2%200.901-2%202v7.008h-0.001v2h0.001v11.963c0%201.099%200.9%202%202%202h28c1.099%200%202-0.901%202-2v-20.971c0-1.099-0.901-2-2-2h0zM11.999%204.046c0-0.552%200.448-1%201-1h6.013c0.552%200%201%200.448%201%201v1.938h-8.014zM2.001%207.984h28v7.008h-11.012v-1.024c0-1.102-0.898-2-2-2h-1.992c-1.102%200-2%200.898-2%202v1.024h-10.996v-7.008zM16.99%2019.004h-1.994v-5.036h1.992zM2%2028.954v-11.963h10.996v2.012c0%201.102%200.897%202%202%202h1.992c1.102%200%202-0.898%202-2v-2.012h11.012v11.963h-28z'/%3e%3c/g%3e%3c/svg%3e" alt="Под ключ" />
               <p><strong>Работаем «под ключ»</strong></p>
             </div>
-
-            <!-- Решаем сложные и нестандартные задачи -->
             <div class="why-item" data-aos="fade-up" data-aos-delay="200">
               <img src="/geodesy-site/assets/challenge-BuGyxhgn.svg" alt="Сложные задачи" />
               <p><strong>Решаем сложные и нестандартные задачи</strong></p>
             </div>
-
-            <!-- Нацелены на положительный результат -->
             <div class="why-item" data-aos="fade-up" data-aos-delay="300">
               <img src="data:image/svg+xml,%3c!DOCTYPE%20svg%20PUBLIC%20'-//W3C//DTD%20SVG%201.1//EN'%20'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Transformed%20by:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20width='800px'%20height='800px'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%20stroke='%2300b2a2'%20stroke-width='0.00024000000000000003'%3e%3cg%20id='SVGRepo_bgCarrier'%20stroke-width='0'/%3e%3cg%20id='SVGRepo_tracerCarrier'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cg%20id='SVGRepo_iconCarrier'%3e%3cpath%20d='M4.5%2020.25C4.30189%2020.2474%204.11263%2020.1676%203.97253%2020.0275C3.83244%2019.8874%203.75259%2019.6981%203.75%2019.5V4.5C3.75%204.30109%203.82902%204.11032%203.96967%203.96967C4.11032%203.82902%204.30109%203.75%204.5%203.75C4.69891%203.75%204.88968%203.82902%205.03033%203.96967C5.17098%204.11032%205.25%204.30109%205.25%204.5V19.5C5.24741%2019.6981%205.16756%2019.8874%205.02747%2020.0275C4.88737%2020.1676%204.69811%2020.2474%204.5%2020.25Z'%20fill='%2300b2a2'/%3e%3cpath%20d='M19.5%2020.25H4.5C4.30109%2020.25%204.11032%2020.171%203.96967%2020.0303C3.82902%2019.8897%203.75%2019.6989%203.75%2019.5C3.75%2019.3011%203.82902%2019.1103%203.96967%2018.9697C4.11032%2018.829%204.30109%2018.75%204.5%2018.75H19.5C19.6989%2018.75%2019.8897%2018.829%2020.0303%2018.9697C20.171%2019.1103%2020.25%2019.3011%2020.25%2019.5C20.25%2019.6989%2020.171%2019.8897%2020.0303%2020.0303C19.8897%2020.171%2019.6989%2020.25%2019.5%2020.25Z'%20fill='%2300b2a2'/%3e%3cpath%20d='M14%2014.75C13.9015%2014.7504%2013.8038%2014.7312%2013.7128%2014.6934C13.6218%2014.6557%2013.5392%2014.6001%2013.47%2014.53L11%2012.06L8.53%2014.53C8.38782%2014.6624%208.19978%2014.7346%208.00548%2014.7311C7.81118%2014.7277%207.62579%2014.649%207.48838%2014.5116C7.35096%2014.3742%207.27225%2014.1888%207.26882%2013.9945C7.2654%2013.8002%207.33752%2013.6121%207.47%2013.47L10.47%2010.47C10.6106%2010.3295%2010.8012%2010.2506%2011%2010.2506C11.1987%2010.2506%2011.3894%2010.3295%2011.53%2010.47L14%2012.94L17.47%209.46997C17.6122%209.33749%2017.8002%209.26537%2017.9945%209.26879C18.1888%209.27222%2018.3742%209.35093%2018.5116%209.48835C18.649%209.62576%2018.7277%209.81115%2018.7312%2010.0054C18.7346%2010.1997%2018.6625%2010.3878%2018.53%2010.53L14.53%2014.53C14.4608%2014.6001%2014.3782%2014.6557%2014.2872%2014.6934C14.1962%2014.7312%2014.0985%2014.7504%2014%2014.75Z'%20fill='%2300b2a2'/%3e%3cpath%20d='M18.5%2013.84C18.3019%2013.8374%2018.1126%2013.7576%2017.9725%2013.6175C17.8324%2013.4774%2017.7526%2013.2881%2017.75%2013.09V10.25H15C14.8011%2010.25%2014.6103%2010.171%2014.4697%2010.0303C14.329%209.88968%2014.25%209.69891%2014.25%209.5C14.25%209.30109%2014.329%209.11032%2014.4697%208.96967C14.6103%208.82902%2014.8011%208.75%2015%208.75H18.5C18.6981%208.75259%2018.8874%208.83244%2019.0275%208.97253C19.1676%209.11263%2019.2474%209.30189%2019.25%209.5V13.09C19.2474%2013.2881%2019.1676%2013.4774%2019.0275%2013.6175C18.8874%2013.7576%2018.6981%2013.8374%2018.5%2013.84Z'%20fill='%2300b2a2'/%3e%3c/g%3e%3c/svg%3e" alt="Результат" />
               <p><strong>Нацелены на положительный результат</strong></p>
             </div>
-
-            <!-- Оформлено более 10 000 объектов -->
             <div class="why-item" data-aos="fade-up" data-aos-delay="400">
               <img src="data:image/svg+xml,%3c!DOCTYPE%20svg%20PUBLIC%20'-//W3C//DTD%20SVG%201.1//EN'%20'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Transformed%20by:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20height='800px'%20width='800px'%20version='1.1'%20id='Capa_1'%20xmlns='http://www.w3.org/2000/svg'%20xmlns:xlink='http://www.w3.org/1999/xlink'%20viewBox='0%200%2020.695%2020.695'%20xml:space='preserve'%20fill=''%20stroke=''%3e%3cg%20id='SVGRepo_bgCarrier'%20stroke-width='0'/%3e%3cg%20id='SVGRepo_tracerCarrier'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cg%20id='SVGRepo_iconCarrier'%3e%3cg%3e%3cpath%20style='fill:%2300b2a2;'%20d='M10.099,3.996l0.898,1.453L9.372,6.64L8.447,5.144L7.141,5.952L6.332,4.645L7.64,3.836l0.809,1.306%20L10.099,3.996z%20M10.181,7.946L9.374,6.64L8.066,7.448l0.807,1.306L10.181,7.946z%20M17.667,5.115l-0.144,0.312%20c-0.26,1.43-1.146,2.388-1.805,2.795c-1.426,0.881-2.903,0.353-2.964,0.331c-0.958-0.203-1.814-0.087-2.52,0.35%20C8.926,9.712,8.553,11.37,8.55,11.389l-0.087,0.407l5.182,8.378l-0.839,0.521L3.577,5.775C3.4,5.845,3.193,5.787,3.089,5.619%20C2.971,5.428,3.03,5.18,3.22,5.062l0.694-0.428C4.102,4.516,4.352,4.575,4.47,4.766C4.568,4.925,4.537,5.12,4.414,5.251%20l0.249,0.404l0.006-0.013C5.211,4.327,5.901,3.404,6.719,2.9c1.484-0.917,2.84-0.154,2.897-0.121%20c1.16,0.676,1.986,0.458,2.474,0.156c0.209-0.13,0.319-0.256,0.319-0.256c1.146-1.005,1.607-2.143,1.81-2.559%20c0.202-0.415,0.563,0.383,0.563,0.383L17.667,5.115z%20M14.049,1.209l0.209,0.338l0.513-0.4l-0.41-0.662%20C14.277,0.652,14.201,0.956,14.049,1.209z%20M8.442,10.6l-0.235,0.146l0.111,0.177C8.35,10.83,8.393,10.717,8.442,10.6z%20M12.691,8.188l-0.18-0.291l-0.176,0.238C12.452,8.148,12.572,8.164,12.691,8.188z%20M13.958,7.312L13.251,6.17l1.433-1.01%20l-0.809-1.306l-1.431,1.012l-0.839-1.355c-0.168,0.04-0.356,0.064-0.563,0.062L10.1,3.997L9.582,3.163%20C9.534,3.136,9.487,3.112,9.438,3.084C9.422,3.075,9.297,3.005,9.092,2.937L7.639,3.836L7.158,3.061%20C7.075,3.1,6.99,3.147,6.904,3.2C6.569,3.407,6.259,3.697,5.97,4.06l0.361,0.586L5.184,5.354C5.132,5.465,5.081,5.575,5.031,5.693%20l0.707,1.126L7.14,5.952l0.926,1.495L6.675,8.308l0.817,1.3l1.381-0.854l0.351,0.565c0.227-0.264,0.497-0.514,0.825-0.718%20c0.132-0.08,0.269-0.147,0.408-0.21l-0.276-0.446l1.632-1.176l-0.816-1.32l1.445-0.583l0.807,1.305l-1.435,0.598l0.669,1.081%20L13.958,7.312z%20M17.147,4.951l-0.021-0.034l-0.502,0.456l-0.698-1.126l0.526-0.409l-0.871-1.394L15.117,2.94l-0.858-1.39%20l-0.757,0.468c-0.133,0.176-0.281,0.349-0.438,0.519l0.812,1.315l1.243-0.913l0.807,1.308l-1.241,0.912l0.707,1.142l-1.396,1.072%20l0.576,0.93c0.312-0.065,0.639-0.182,0.961-0.381c0.205-0.127,0.397-0.282,0.576-0.461l-0.717-1.159l1.232-0.929l0.41,0.663%20L17.147,4.951z'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e" alt="10 000 объектов" />
               <p><strong>Оформлено более 1 000 объектов</strong></p>
             </div>
-
-            <!-- Работаем официально и по договору -->
             <div class="why-item" data-aos="fade-up" data-aos-delay="500">
               <img src="data:image/svg+xml,%3c!DOCTYPE%20svg%20PUBLIC%20'-//W3C//DTD%20SVG%201.1//EN'%20'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3e%3c!--%20Uploaded%20to:%20SVG%20Repo,%20www.svgrepo.com,%20Transformed%20by:%20SVG%20Repo%20Mixer%20Tools%20--%3e%3csvg%20width='800px'%20height='800px'%20viewBox='0%200%2024%2024'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='SVGRepo_bgCarrier'%20stroke-width='0'/%3e%3cg%20id='SVGRepo_tracerCarrier'%20stroke-linecap='round'%20stroke-linejoin='round'/%3e%3cg%20id='SVGRepo_iconCarrier'%3e%3cpath%20d='M5%208C5%205.17157%205%203.75736%205.87868%202.87868C6.75736%202%208.17157%202%2011%202H13C15.8284%202%2017.2426%202%2018.1213%202.87868C19%203.75736%2019%205.17157%2019%208V16C19%2018.8284%2019%2020.2426%2018.1213%2021.1213C17.2426%2022%2015.8284%2022%2013%2022H11C8.17157%2022%206.75736%2022%205.87868%2021.1213C5%2020.2426%205%2018.8284%205%2016V8Z'%20stroke='%2300b2a2'%20stroke-width='1.5'/%3e%3cpath%20d='M5%204.07617C4.02491%204.17208%203.36857%204.38885%202.87868%204.87873C2%205.75741%202%207.17163%202%2010.0001V14.0001C2%2016.8285%202%2018.2427%202.87868%2019.1214C3.36857%2019.6113%204.02491%2019.828%205%2019.9239'%20stroke='%2300b2a2'%20stroke-width='1.5'/%3e%3cpath%20d='M19%204.07617C19.9751%204.17208%2020.6314%204.38885%2021.1213%204.87873C22%205.75741%2022%207.17163%2022%2010.0001V14.0001C22%2016.8285%2022%2018.2427%2021.1213%2019.1214C20.6314%2019.6113%2019.9751%2019.828%2019%2019.9239'%20stroke='%2300b2a2'%20stroke-width='1.5'/%3e%3cpath%20d='M9%2013H15'%20stroke='%2300b2a2'%20stroke-width='1.5'%20stroke-linecap='round'/%3e%3cpath%20d='M9%209H15'%20stroke='%2300b2a2'%20stroke-width='1.5'%20stroke-linecap='round'/%3e%3cpath%20d='M9%2017H12'%20stroke='%2300b2a2'%20stroke-width='1.5'%20stroke-linecap='round'/%3e%3c/g%3e%3c/svg%3e" alt="Официальная работа" />
               <p><strong>Работаем официально и по договору</strong></p>
@@ -199,7 +185,91 @@
           </div>
         </div>
       </section>
-      <!-- 🔹 НАШИ ЛИЦЕНЗИИ -->
+
+      <!-- Нам доверяют -->
+      <section id="clients" class="clients" data-aos="fade-up">
+        <div class="container">
+          <h2>Нам доверяют</h2>
+
+          <!-- Грид (Desktop) -->
+          <div class="clients__grid">
+            <div class="client-item">
+              <p>ТОРЭКО</p>
+              <img src="/geodesy-site/assets/toreko-WuvyP11e.jpg" alt="ТОРЭКО" />
+            </div>
+            <div class="client-item">
+              <p>Завод "Сокол"</p>
+              <img src="/geodesy-site/assets/sokol-ByS9UvYQ.webp" alt="Завод Сокол" />
+            </div>
+            <div class="client-item">
+              <p>Торговый комплекс "Форум"</p>
+              <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAA5CAMAAACGeNCUAAAAAXNSR0IB2cksfwAAAtZQTFRFAAAA////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////E/HvlQAAAPJ0Uk5TAGFIAigSkP/DQETOoMDNdR6/OC+5xG0Wo+K4Mx2i/vel5/28Y1AGaOawMRCJ8FkgA0Ob7vmzWgwJcKgqcu2NBUvzqlMIC3jsJAFb3yGt8X78nr0NXbX7mEGC9PoaLbbSSWYUiPUZHONgx96p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" alt="Форум" />
+            </div>
+            <div class="client-item">
+              <p>Газпром трансгаз Саратов</p>
+              <img src="/geodesy-site/assets/gazprom-BjUooWhr.webp" alt="Газпром" />
+            </div>
+            <div class="client-item">
+              <p>ЗАО "УПТК-1"</p>
+              <img src="/geodesy-site/assets/arma-fCQ09qrb.png" alt="УПТК-1" />
+            </div>
+            <div class="client-item">
+              <p>ООО "ИНЖЕКТ"</p>
+              <img src="/geodesy-site/assets/inzhect-B9sPJ4Cn.webp" alt="ИНЖЕКТ" />
+            </div>
+            <div class="client-item">
+              <p>ООО "Сокур плюс"</p>
+            </div>
+            <div class="client-item">
+              <p>АО "Химфармреактив"</p>
+            </div>
+            <div class="client-item">
+              <p>ООО "Лысогорский Элеватор"</p>
+            </div>
+          </div>
+
+          <!-- Слайдер (Mobile) -->
+          <div class="mobile-slider">
+            <div class="mobile-slider__track">
+              <div class="mobile-slide client-item">
+                <p>ТОРЭКО</p>
+                <img src="/geodesy-site/assets/toreko-WuvyP11e.jpg" alt="ТОРЭКО" />
+              </div>
+              <div class="mobile-slide client-item">
+                <p>Завод "Сокол"</p>
+                <img src="/geodesy-site/assets/sokol-ByS9UvYQ.webp" alt="Сокол" />
+              </div>
+              <div class="mobile-slide client-item">
+                <p>Торговый комплекс "Форум"</p>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAA5CAMAAACGeNCUAAAAAXNSR0IB2cksfwAAAtZQTFRFAAAA////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////E/HvlQAAAPJ0Uk5TAGFIAigSkP/DQETOoMDNdR6/OC+5xG0Wo+K4Mx2i/vel5/28Y1AGaOawMRCJ8FkgA0Ob7vmzWgwJcKgqcu2NBUvzqlMIC3jsJAFb3yGt8X78nr0NXbX7mEGC9PoaLbbSSWYUiPUZHONgx96p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" alt="Форум" />
+              </div>
+              <div class="mobile-slide client-item">
+                <p>Газпром трансгаз Саратов</p>
+                <img src="/geodesy-site/assets/gazprom-BjUooWhr.webp" alt="Газпром" />
+              </div>
+              <div class="mobile-slide client-item">
+                <p>ЗАО "УПТК-1"</p>
+                <img src="/geodesy-site/assets/arma-fCQ09qrb.png" alt="УПТК-1" />
+              </div>
+              <div class="mobile-slide client-item">
+                <p>ООО "ИНЖЕКТ"</p>
+                <img src="/geodesy-site/assets/inzhect-B9sPJ4Cn.webp" alt="ИНЖЕКТ" />
+              </div>
+              <div class="mobile-slide client-item">
+                <p>ООО "Сокур плюс"</p>
+              </div>
+              <div class="mobile-slide client-item">
+                <p>АО "Химфармреактив"</p>
+              </div>
+              <div class="mobile-slide client-item">
+                <p>ООО "Лысогорский Элеватор"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Наши лицензии -->
       <section class="licenses" id="licenses" data-aos="fade-up">
         <div class="container">
           <h2>Наши лицензии</h2>
@@ -255,25 +325,27 @@
         </div>
       </section>
 
-      <!-- Модальное окно для просмотра изображений -->
+      <!-- Модальное окно для просмотра лицензий -->
       <div class="license-modal" id="licenseModal">
         <span class="license-modal-close" id="licenseModalClose">&times;</span>
         <img id="licenseModalImg" src="" alt="Лицензия" />
       </div>
 
-      <!-- ФОРМА ЗАЯВКИ -->
+      <!-- Форма заявки -->
       <section id="contact-form" class="contact-form" data-aos="fade-up">
         <div class="container">
           <h2>Оставьте заявку</h2>
-          <form>
-            <input type="text" placeholder="Ваше имя" required />
-            <input type="tel" placeholder="Телефон" required />
-            <textarea placeholder="Ваш вопрос"></textarea>
+          <form id="contactForm">
+            <input type="text" id="name" placeholder="Ваше имя" required />
+            <input type="tel" id="phone" placeholder="Телефон" required />
+            <textarea id="message" placeholder="Ваш вопрос"></textarea>
             <button type="submit">Отправить</button>
           </form>
         </div>
       </section>
     </main>
+
+    <!-- Подключение AOS в конце (с integrity) -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
       integrity="sha512-28rVCSfnGkY5QqyCq5S4v9oNmrZq0/7c7M36+Tn2l6JEt3y6zNBzdyzEOXJl9DSBe0Cvo1HSZkNVFfEWqUGTBA=="
@@ -282,5 +354,7 @@
     ></script>
 
     <div id="footer"></div>
+
+    <!-- Основные скрипт -->
   </body>
 </html>
