@@ -6,6 +6,11 @@ export default defineConfig({
   base: "/geodesy-site/", // Указываем base, чтобы GitHub Pages корректно работал
   root: "src",
   envPrefix: "VITE_",
+  server: {
+    fs: {
+      strict: false, // Разрешает доступ к файлам вне public
+    },
+  },
   build: {
     outDir: "../dist", // Выходная директория
     emptyOutDir: true, // Очищаем перед билдом
