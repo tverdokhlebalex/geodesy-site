@@ -3,38 +3,29 @@ import { resolve } from "path";
 import copy from "rollup-plugin-copy";
 
 export default defineConfig({
-  base: "/geodesy-site/", // Указываем base, чтобы GitHub Pages корректно работал
-  root: "src",
-  envPrefix: "VITE_",
-  server: {
-    fs: {
-      strict: false, // Разрешает доступ к файлам вне public
-    },
-  },
+  base: "/",
+  root: "src", // Корень: src
   build: {
-    outDir: "../dist", // Выходная директория
-    emptyOutDir: true, // Очищаем перед билдом
+    outDir: "../dist", // Сборка на уровень выше
+    emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, "src/index.html"), // Указываем путь к index.html
+        main: resolve(__dirname, "src/index.html"),
+        // Если нужны about, contacts и т.д., добавьте
       },
     },
   },
   plugins: [
     copy({
       targets: [
-        { src: "src/components/*", dest: "dist/components" }, // Копируем header и footer в dist
+        // копируем файлы *.html из src/components => ../dist/components
+        { src: "components/*.html", dest: "../dist/components" },
       ],
       hook: "writeBundle",
     }),
   ],
-  resolve: {
-    alias: {
-      "@": resolve(__dirname, "src"), // Упрощаем импорт файлов через @/
-    },
-  },
   server: {
     port: 5173,
-    open: true, // Автоматически открываем браузер при запуске dev-сервера
+    open: true,
   },
 });

@@ -1,14 +1,14 @@
-<header x-data="{ openMobileMenu: false }" class="header-upgrade">
+<header class="header-upgrade">
   <div class="header-upgrade__wrapper">
     <!-- Логотип слева -->
     <p class="logo-p">НЕО</p>
 
-    <!-- Десктопное меню (по центру, за счёт margin: 0 auto;) -->
+    <!-- Десктопное меню (по центру) -->
     <nav class="header-upgrade__nav-desktop">
       <ul class="menu-desktop">
         <li><a href="index.html">Главная</a></li>
-        <!--<li><a href="services.html">Услуги</a></li>-->
-        <!--<li><a href="about.html">О нас</a></li>-->
+        <li><a href="index.html#services">Услуги</a></li>
+        <!-- <li><a href="about.html">О нас</a></li> -->
         <li><a href="contacts.html">Контакты</a></li>
       </ul>
     </nav>
@@ -40,13 +40,8 @@
         </svg>
       </a>
 
-      <!-- Бургер для мобильного меню -->
-      <div
-        class="icon-menu-mobile"
-        @click="openMobileMenu = !openMobileMenu"
-        :class="{ 'active': openMobileMenu }"
-        aria-expanded="false"
-      >
+      <!-- Бургер -->
+      <div class="icon-menu-mobile" id="burgerBtn" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -55,79 +50,56 @@
   </div>
 
   <!-- Мобильное меню (шторка) -->
-  <div class="main-menu" :class="{ 'opened': openMobileMenu }">
-    <button class="close-menu" @click="openMobileMenu = false">×</button>
+  <div class="main-menu" id="mobileMenu">
+    <button class="close-menu" id="closeMenuBtn">×</button>
     <nav class="mobile-nav">
       <ul>
+        <li><a href="index.html">Главная</a></li>
         <li>
-          <a href="index.html" @click="openMobileMenu = false">Главная</a>
+          <!-- Короткий якорь на #services -->
+          <a href="#services">Услуги</a>
         </li>
-        <!--<li>
-          <a href="services.html" @click="openMobileMenu = false">Услуги</a>
-        </li>-->
-        <!--<li><a href="about.html" @click="openMobileMenu = false">О нас</a></li>-->
-        <li>
-          <a href="contacts.html" @click="openMobileMenu = false">Контакты</a>
-        </li>
+        <!-- <li><a href="about.html">О нас</a></li> -->
+        <li><a href="contacts.html">Контакты</a></li>
       </ul>
     </nav>
   </div>
 
-  <!-- Скрипт для активных ссылок и работы бургера -->
+  <!-- Скрипт меню и активных ссылок -->
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const currentPage =
-        window.location.pathname.split("/").pop() || "index.html";
-      const currentHash = window.location.hash;
-
-      const mobileMenu = document.querySelector(".main-menu");
-      const burgerIcon = document.querySelector(".icon-menu-mobile");
-      const closeMenuBtn = document.querySelector(".close-menu");
+    document.addEventListener("DOMContentLoaded", () => {
+      const burgerBtn = document.getElementById("burgerBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const closeMenuBtn = document.getElementById("closeMenuBtn");
       const menuLinks = document.querySelectorAll(
         ".menu-desktop a, .mobile-nav a"
       );
 
-      // === Функция установки активного класса на ссылки ===
-      function setActiveLink() {
-        menuLinks.forEach((link) => {
-          const linkHref = link.getAttribute("href");
-
-          if (linkHref.includes("#")) {
-            if (currentPage === "index.html" && currentHash === linkHref) {
-              link.classList.add("active");
-            } else {
-              link.classList.remove("active");
-            }
-          } else if (linkHref === currentPage) {
-            link.classList.add("active");
-          } else {
-            link.classList.remove("active");
-          }
-        });
-      }
-
       // === Открытие/закрытие мобильного меню ===
       function toggleMobileMenu() {
         mobileMenu.classList.toggle("opened");
-        burgerIcon.classList.toggle("active");
+        burgerBtn.classList.toggle("active");
 
         if (mobileMenu.classList.contains("opened")) {
-          document.body.style.overflow = "hidden"; // Блокируем прокрутку при открытом меню
+          document.body.style.overflow = "hidden"; // блокируем прокрутку
         } else {
           document.body.style.overflow = "";
         }
       }
 
-      // === Закрытие меню при клике на ссылку ===
       function closeMobileMenu() {
         mobileMenu.classList.remove("opened");
-        burgerIcon.classList.remove("active");
+        burgerBtn.classList.remove("active");
         document.body.style.overflow = "";
       }
+
+      burgerBtn.addEventListener("click", toggleMobileMenu);
+      closeMenuBtn.addEventListener("click", closeMobileMenu);
 
       // === Плавная прокрутка к якорям ===
       menuLinks.forEach((link) => {
         link.addEventListener("click", function (e) {
+          // Если ссылка начинается с "#", прокрутка без перезагрузки
           if (this.getAttribute("href").startsWith("#")) {
             e.preventDefault();
             const targetId = this.getAttribute("href").substring(1);
@@ -145,9 +117,34 @@
         });
       });
 
-      // === Обработчики ===
-      burgerIcon.addEventListener("click", toggleMobileMenu);
-      closeMenuBtn.addEventListener("click", closeMobileMenu);
+      // === Функция для подсветки текущей ссылки ===
+      function setActiveLink() {
+        const currentPage =
+          window.location.pathname.split("/").pop() || "index.html";
+        const currentHash = window.location.hash;
+
+        menuLinks.forEach((link) => {
+          const linkHref = link.getAttribute("href");
+          // Если это якорь
+          if (linkHref.startsWith("#")) {
+            // Пользователь на index.html + совпал hash
+            if (currentPage === "index.html" && currentHash === linkHref) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          } else {
+            // Переход на другую страницу
+            if (linkHref === currentPage) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          }
+        });
+      }
+
+      // Запускаем подсветку
       setActiveLink();
     });
   </script>
