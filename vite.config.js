@@ -4,26 +4,33 @@ import copy from "rollup-plugin-copy";
 
 export default defineConfig({
   base: "/",
-  root: "src", // Корень: src
+
+  root: "src",
+
   build: {
-    outDir: "../dist", // Сборка на уровень выше
+    outDir: "../dist",
     emptyOutDir: true,
     rollupOptions: {
       input: {
         main: resolve(__dirname, "src/index.html"),
-        // Если нужны about, contacts и т.д., добавьте
+        contacts: resolve(__dirname, "src/contacts.html"),
       },
     },
   },
+
   plugins: [
     copy({
       targets: [
-        // копируем файлы *.html из src/components => ../dist/components
-        { src: "components/*.html", dest: "../dist/components" },
+        {
+          // Путь к копируемым файлам относительно корня проекта
+          src: "src/components/**/*",
+          dest: "dist/components",
+        },
       ],
       hook: "writeBundle",
     }),
   ],
+
   server: {
     port: 5173,
     open: true,
