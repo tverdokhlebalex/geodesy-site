@@ -620,9 +620,6 @@ img {
   }
 }
 
-/* =======================
-         БЛОК "НАМ ДОВЕРЯЮТ"
-      ======================= */
 .clients {
   padding: 80px 20px;
   text-align: center;
@@ -637,7 +634,8 @@ img {
   color: var(--main-green);
   margin-bottom: 40px;
 }
-/* Grid (desktop) */
+
+/* Десктопная сетка */
 .clients__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -668,31 +666,33 @@ img {
 }
 .client-item img {
   width: 120px;
-  max-width: 120px;
-  max-height: 50px;
   object-fit: contain;
 }
-/* Мобильный слайдер (по умолчанию скрыт) */
+
+/* --- Мобильный слайдер (по умолчанию скрываем на >768px) --- */
 .mobile-slider {
   display: none;
-  overflow: hidden;
+  overflow: hidden; /* Скрывает то, что за границами */
   width: 100%;
   margin: 0 auto;
-  max-width: 100%;
   position: relative;
 }
 .mobile-slider__track {
   display: flex;
-  gap: 20px;
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
+  touch-action: pan-y; /* разрешаем вертик. скрол */
+  user-select: none; /* запрещаем выделение при свайпе */
 }
 .mobile-slide {
-  flex: 0 0 auto; /* чтобы не сжимался */
+  flex: 0 0 100%; /* один слайд = 100% контейнера */
+  box-sizing: border-box;
+  text-align: center;
 }
-/* Адаптивность */
+
+/* --- Адаптивность: при <=768px, скрываем .clients__grid, показываем .mobile-slider --- */
 @media (max-width: 768px) {
   .clients__grid {
-    display: none; /* скрываем грид */
+    display: none; /* скрываем сетку */
   }
   .mobile-slider {
     display: block; /* показываем слайдер */

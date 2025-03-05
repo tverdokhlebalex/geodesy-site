@@ -1,46 +1,133 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // 1) Проверяем, что действительно <768, чтобы включить мобильный слайдер
-  if (window.innerWidth <= 768) {
-    const track = document.querySelector(".mobile-slider__track");
-    const slides = document.querySelectorAll(".mobile-slide");
-    const container = document.querySelector(".mobile-slider");
+document.addEventListener("DOMContentLoaded", () => {
+  // Слайдер включаем только при <=768px
+  if (window.innerWidth > 768) return;
 
-    // Если нет слайдов или нет контейнера, выходим
-    if (!slides.length || !container) return;
+  const slider = document.getElementById("mobileSlider");
+  const track = document.getElementById("mobileSliderTrack");
+  const slides = document.querySelectorAll(".mobile-slide");
+  if (!slider || !track || !slides.length) return;
 
-    let currentPage = 0;
+  let currentIndex = 0; // Текущий «экран»
+  let slidesPerPage = 1; // Сколько слайдов влезает
+  let slideWidth = 0; // Ширина одного слайда
+  let totalPages = 1; // Общее число «экранов»
+  let currentShift = 0; // Текущее смещение
+  let autoSlideTimer; // ID таймера автопрокрутки
 
-    // 2) Вычисляем slidesPerPage (сколько карточек влезает)
-    //  - ширина контейнера
-    const containerWidth = container.offsetWidth;
-    //  - ширина одной карточки (предположим, все одинаковые)
-    const firstSlideWidth = slides[0].offsetWidth;
+  let isDragging = false;
+  let startX = 0;
+  let prevX = 0;
 
-    //  - сколько карточек умещается целиком в контейнер
-    const slidesPerPage = Math.floor(containerWidth / firstSlideWidth) || 1;
+  function updateSlider() {
+    const containerWidth = slider.offsetWidth;
+    // получаем реальный gap (column-gap) из CSS
+    const style = getComputedStyle(track);
+    const rawGap = style.columnGap || "20px";
+    const gap = parseFloat(rawGap) || 0;
 
-    //  - кол-во "страниц"
-    const totalPages = Math.ceil(slides.length / slidesPerPage);
+    // ширина первой карточки (до сужения)
+    const originalSlideWidth = slides[0].offsetWidth || 200;
 
-    // 3) Функция листания
-    function nextPage() {
-      currentPage++;
-      if (currentPage >= totalPages) {
-        currentPage = 0; // зацикливаем
-      }
-      // Сколько пикселей на 1 слайд
-      const shiftX = firstSlideWidth * slidesPerPage + slidesPerPage * 20;
-      /* 
-           "20" — это gap (в пикселях), 
-           если используете другое значение, меняйте
-           Можно точнее вычислить, если получать
-           const gap = parseInt(getComputedStyle(track).columnGap, 10) || 0;
-           Но здесь упрощённый подход.
-        */
-      track.style.transform = `translateX(-${currentPage * shiftX}px)`;
-    }
+    // вычисляем, сколько влезет без обрезки
+    slidesPerPage = Math.floor(
+      (containerWidth + gap) / (originalSlideWidth + gap)
+    );
+    if (slidesPerPage < 1) slidesPerPage = 1;
 
-    // 4) Автопрокрутка (каждые 3 секунды)
-    setInterval(nextPage, 3000);
+    // итоговый общий gap на одной «странице»
+    const totalGapInOneScreen = gap * (slidesPerPage - 1);
+
+    // ширина одного слайда
+    slideWidth = (containerWidth - totalGapInOneScreen) / slidesPerPage;
+
+    // присваиваем ширину
+    slides.forEach((slide) => {
+      slide.style.width = slideWidth + "px";
+    });
+
+    // кол-во «экранов»
+    totalPages = Math.ceil(slides.length / slidesPerPage);
+    if (currentIndex >= totalPages) currentIndex = totalPages - 1;
+
+    currentShift = -(
+      currentIndex *
+      (slideWidth * slidesPerPage + totalGapInOneScreen)
+    );
+    track.style.transform = `translateX(${currentShift}px)`;
   }
+
+  function moveToPage(idx) {
+    const style = getComputedStyle(track);
+    const gap = parseFloat(style.columnGap || "20px") || 0;
+    const totalGapInOneScreen = gap * (slidesPerPage - 1);
+    const screenWidth = slideWidth * slidesPerPage + totalGapInOneScreen;
+
+    currentShift = -(idx * screenWidth);
+    track.style.transition = "transform 0.3s ease";
+    track.style.transform = `translateX(${currentShift}px)`;
+  }
+
+  function startAutoSlide() {
+    stopAutoSlide();
+    autoSlideTimer = setInterval(() => {
+      currentIndex++;
+      if (currentIndex >= totalPages) {
+        currentIndex = 0;
+      }
+      moveToPage(currentIndex);
+    }, 4000);
+  }
+
+  function stopAutoSlide() {
+    if (autoSlideTimer) {
+      clearInterval(autoSlideTimer);
+      autoSlideTimer = null;
+    }
+  }
+
+  // Инициализация
+  updateSlider();
+  window.addEventListener("resize", updateSlider);
+
+  // Свайпы
+  track.addEventListener("touchstart", (e) => {
+    isDragging = true;
+    startX = e.touches[0].clientX;
+    prevX = startX;
+    track.style.transition = "none";
+    stopAutoSlide();
+  });
+  track.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    const currentX = e.touches[0].clientX;
+    const deltaX = currentX - prevX;
+    prevX = currentX;
+    currentShift += deltaX;
+    track.style.transform = `translateX(${currentShift}px)`;
+  });
+  track.addEventListener("touchend", (e) => {
+    isDragging = false;
+    track.style.transition = "transform 0.3s ease";
+
+    const style = getComputedStyle(track);
+    const gap = parseFloat(style.columnGap || "20") || 0;
+    const totalGapInOneScreen = gap * (slidesPerPage - 1);
+    const screenWidth = slideWidth * slidesPerPage + totalGapInOneScreen;
+
+    const moved = e.changedTouches[0].clientX - startX;
+    const threshold = screenWidth / 4; // 25% экрана
+
+    if (Math.abs(moved) > threshold) {
+      if (moved < 0 && currentIndex < totalPages - 1) {
+        currentIndex++;
+      } else if (moved > 0 && currentIndex > 0) {
+        currentIndex--;
+      }
+    }
+    moveToPage(currentIndex);
+    startAutoSlide();
+  });
+
+  // Запуск автопрокрутки
+  startAutoSlide();
 });
