@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Закрываем от индексации служебные файлы
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /temp/
+Disallow: /private/
+Disallow: /wp-admin/  # Если есть WordPress
+Disallow: /search  # Исключаем страницы поиска (если есть)
+Disallow: /*?  # Закрываем динамические параметры в URL
+
