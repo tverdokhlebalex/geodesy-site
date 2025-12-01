@@ -903,6 +903,10 @@ img {
   width: 18px;
   height: 18px;
 }
+.footer__info-item svg {
+  width: 18px;
+  height: 18px;
+}
 .footer__info-item a {
   color: var(--accent-color);
   transition: color 0.3s;

@@ -4,9 +4,16 @@ import copy from "rollup-plugin-copy";
 
 export default defineConfig({
   base: "/",
-
   root: "src",
-
+  envPrefix: "VITE_",
+  server: {
+    fs: {
+      strict: false, // Разрешает доступ к файлам вне public
+    },
+    port: 5173,
+    open: true,
+  },
+  build: {
   build: {
     outDir: "../dist",
     emptyOutDir: true,
@@ -17,7 +24,6 @@ export default defineConfig({
       },
     },
   },
-
   plugins: [
     copy({
       targets: [
@@ -30,9 +36,9 @@ export default defineConfig({
       hook: "writeBundle",
     }),
   ],
-
-  server: {
-    port: 5173,
-    open: true,
+  resolve: {
+    alias: {
+      "@": resolve(__dirname, "src"), // Упрощаем импорт файлов через @/
+    },
   },
 });

@@ -5,10 +5,9 @@ import "aos/dist/aos.css";
 // 📌 Импортируем функцию отправки заявок в Telegram
 import { sendTelegramMessage } from "./telegram-bot.js";
 
-// 📌 Определяем базовый путь (локально или GitHub Pages)
-const basePath = window.location.hostname.includes("github.io")
-  ? "/geodesy-site"
-  : "";
+// 📌 Определяем базовый путь на основе конфигурации Vite
+// import.meta.env.BASE_URL учитывает base из vite.config.js и работает и локально, и на проде
+const basePath = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
 
 // 🚀 Функция загрузки HTML-файлов (Header & Footer)
 async function loadComponent(selector, file) {
